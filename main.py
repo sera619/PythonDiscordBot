@@ -8,6 +8,7 @@ import itertools
 import math
 import random
 import youtube_dl
+import ffmpeg
 from async_timeout import timeout
 from discord.ext import commands
 from discord.utils import get as G
@@ -27,56 +28,6 @@ online_users = client.users
 
 
 # startup routine
-@client.event
-async def on_ready():
-  print('Bot ist eingeloggt als: {0.user}'.format(client))
-  for guild in client.guilds:
-    if guild.name != SERVER_NAME:
-      # debugger: print({guild.name})
-      break
-    # debugger: print([guild.roles])
-    
-    print(
-      f'{client.user} ist verbunden mit den folgenden Servern:\n'
-      +f'{guild.name}(id: {guild.id})'
-    )
-
-    members = '\n - '.join([member.name for member in guild.members])
-    print(f'Server Mitglieder:\n - {members}')
-
-
-# message Reaktionen
-@client.event
-async def on_message(message):
-  if message.author == client.user:
-    return
-  
-  if message.content == "!welpe":
-    role = G(message.server.roles, name='Welpe')
-    await client.add_roles(message.author, role)
-
-  if message.content.startswith("!hi"):
-    await message.channel.send(message_hi.format(user = message.author.name))
-    await message.author.create_dm()
-    await message.author.dm_channel.send(
-      f"Hallo {message.author.name},\n"+
-      f"Dies ist eine Testnachricht, Danke!"
-    )
-
-  if message.content.startswith("!commands"):
-    await message.channel.send(command_message)
-
-# private willkommens Nachricht
-
-@client.event
-async def on_member_join(member):
-  role = G(member.guilds.roles, name="Welpe")
-  await member.add_roles(role)
-  await member.create_dm()
-  await member.dm_channel.send(
-    f"Hallo {member.name}, Willkommen auf dem Discord zum Spiel 'A Fox Tale'!\n"+
-    f"--- noch nicht fertig --- =D"
-  )
 
 #MusicPlayerStart
 
@@ -563,6 +514,56 @@ class Music(commands.Cog):
             if ctx.voice_client.channel != ctx.author.voice.channel:
                 raise commands.CommandError('Bot ist bereits im Voicechannel.')
 
+@client.event
+async def on_ready():
+  print('Bot ist eingeloggt als: {0.user}'.format(client))
+  for guild in client.guilds:
+    if guild.name != SERVER_NAME:
+      # debugger: print({guild.name})
+      break
+    # debugger: print([guild.roles])
+    
+    print(
+      f'{client.user} ist verbunden mit den folgenden Servern:\n'
+      +f'{guild.name}(id: {guild.id})'
+    )
+
+    members = '\n - '.join([member.name for member in guild.members])
+    print(f'Server Mitglieder:\n - {members}')
+
+
+# message Reaktionen
+@client.event
+async def on_message(message):
+  if message.author == client.user:
+    return
+  
+  if message.content == "!welpe":
+    role = G(message.server.roles, name='Welpe')
+    await client.add_roles(message.author, role)
+
+  if message.content.startswith("!hi"):
+    await message.channel.send(message_hi.format(user = message.author.name))
+    await message.author.create_dm()
+    await message.author.dm_channel.send(
+      f"Hallo {message.author.name},\n"+
+      f"Dies ist eine Testnachricht, Danke!"
+    )
+
+  if message.content.startswith("!commands"):
+    await message.channel.send(command_message)
+
+# private willkommens Nachricht
+
+@client.event
+async def on_member_join(member):
+  role = G(member.guilds.roles, name="Welpe")
+  await member.add_roles(role)
+  await member.create_dm()
+  await member.dm_channel.send(
+    f"Hallo {member.name}, Willkommen auf dem Discord zum Spiel 'A Fox Tale'!\n"+
+    f"--- noch nicht fertig --- =D"
+  )
 
 bot = commands.Bot('music.', description='Yet another music bot.')
 bot.add_cog(Music(bot))
