@@ -47,7 +47,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == "!welpe":
+    if message.content.startswith('!welpe'):
         role = G(message.server.roles, name='Welpe')
     await client.add_roles(message.author, role)
 
