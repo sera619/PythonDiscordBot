@@ -24,6 +24,10 @@ HOMEPAGE_URL = "https://sera619.github.io/FOX-TALE-Alpha/"
 DM_MESSAGE = f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
 f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\n\nSolltest du Fragen oder Probleme haben wende dich bitte an einen Administrator oder an den CEO.'
 f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
+# Commando vars
+bot = commands.Bot(command_prefix='.')
+
+
 
 class MyClient(discord.Client):
     def __init__(self, *args, **kwargs):
@@ -154,9 +158,15 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
+
+
+@bot.command()
+async def pint(ctx):
+    await ctx.send('pong')
     
 K()
 intents = discord.Intents.default()
 intents.members = True
 client = MyClient()
+bot.run(TOKEN)
 client.run(TOKEN)
