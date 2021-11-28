@@ -5,7 +5,7 @@ from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM
 from keep_alive import keep_alive as K
-
+import commands as COM
 
 # discord token to connect with server
 TOKEN = os.environ['TOKEN']
@@ -161,7 +161,7 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
-    
+    COM()
     
 K()
 intents = discord.Intents.default()
