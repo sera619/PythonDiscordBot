@@ -161,7 +161,7 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
-    COM()
+
     
 K()
 intents = discord.Intents.default()
