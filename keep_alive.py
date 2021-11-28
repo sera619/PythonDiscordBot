@@ -48,12 +48,17 @@ def home():
       <h1><span class="fas fa-bezier-curve"></span>
         Python Discord-Bot © S3R43o3
       </h1>
-      </span>
+      
     </div>
     <div class="color">
+      <span class="fas fa-broadcast-tower></span>
       <p>Bot ist vollständig initialsiert.</p>
     </div>
     <div class="container">
+      <div class="color">
+        <h2><span class="fas fa-braille></span></h2>
+        <h2>Bot Informationen:</h2>
+      </div>
       <!--
       <ul>
         <li>Bot-Name: </li>
