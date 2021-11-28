@@ -1,6 +1,6 @@
 from flask import Flask
 from threading import Thread
-#simpler webserver zum aktiv halten des bots
+# simpler webserver zum aktiv halten des bots
 
 
 app = Flask('')
@@ -12,25 +12,26 @@ def home():
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="templates/style.css" type="text/css" />
+  <link rel="stylesheet" href="templates/style.css" type="text/css" />
 </head>
 <header>
-    <nav class="navbar"></nav>
+  <nav class="navbar"></nav>
 </header>
 
 <body>
-    <div class="block">
-        <h1>
-            Python Discord-Bot © S3R43o3
-        </h1>
-    </div>
-    <div class="container">
-        <p class="text">
+  <div class="block">
+    <h1>
+      Python Discord-Bot © S3R43o3
+    </h1>
+  </div>
+  <div class="container">
+    <p class="text">
 
-        </p>
-    </div>
+    </p>
+  </div>
 </body>
 <footer>
+
 </footer>
 
 </html>'''
