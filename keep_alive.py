@@ -12,8 +12,7 @@ user_id: str
 
 @app.route('/')
 def home():
-  return
-'''
+    return'''
 <!DOCTYPE html>
 
 <header>
