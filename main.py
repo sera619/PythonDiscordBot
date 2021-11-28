@@ -83,8 +83,8 @@ class MyClient(discord.Client):
         
         # -> !hi
         if message.content.startswith('!hi'):
-            return await message.channel.send(WELCOME_MESSAGE.format(user=message.author.name))
-        
+            return await message.reply(WELCOME_MESSAGE.format(user=message.author.name), mention = True)
+                
         # -> !homepage
         if message.content.startswith('!homepage'):
             embed = EM(
@@ -96,7 +96,7 @@ class MyClient(discord.Client):
             embed.set_author(name = "")
             embed.set_thumbnail(url = LOGO_URL)
             
-            return await message.channel.send(embed = embed)
+            return await message.reply(embed = embed)
     
     async def on_member_join(self, member):
         guild = member.guild
