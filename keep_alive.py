@@ -45,7 +45,7 @@ def home():
 <body>
   <center>
     <div>
-      <span class"fa fa-discord"><h1>
+      <h1><i class="fas fa-bezier-curve"></i>
         Python Discord-Bot © S3R43o3
       </h1>
       </span>
