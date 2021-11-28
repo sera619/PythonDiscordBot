@@ -1,4 +1,4 @@
-ifrom flask import Flask
+from flask import Flask
 from flask import render_template
 from threading import Thread
 
