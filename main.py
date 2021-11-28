@@ -90,7 +90,7 @@ class MyClient(discord.Client):
                 title="Die 'A Fox Tale' Homepage",
                 description = "Der Link zur Homepage von 'A Fox Tale'."
             )
-            embed.set_author(name = str(self))
+            embed.set_author(name = self.user.username)
             embed.set_thumbnail(url = LOGO_URL)
             embed.set_footer(text = "\n"+
                              f"*Der Link zur offiziellen Homepage von 'A Fox Tale':* \n"
