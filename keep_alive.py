@@ -1,4 +1,4 @@
-from flask import Flask
+ifrom flask import Flask
 from flask import render_template
 from threading import Thread
 
@@ -51,13 +51,13 @@ def home():
       
     </div>
     <div class="color">
-      <span class="fas fa-broadcast-tower></span>
-      <p>Bot ist vollständig initialsiert.</p>
+      <p><i class="fas fa-broadcast-tower></i>
+      Bot ist vollständig initialsiert.</p>
     </div>
     <div class="container">
       <div class="color">
-        <h2><span class="fas fa-braille></span></h2>
-        <h2>Bot Informationen:</h2>
+        <h2><i class="fas fa-braille></i></h2>
+        Bot Informationen:</h2>
       </div>
       <!--
       <ul>
