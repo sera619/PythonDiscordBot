@@ -54,18 +54,17 @@ def home():
       <p><i class="fas fa-broadcast-tower></i>
       Bot ist vollständig initialsiert.</p>
     </div>
-    <div class="container">
-      <div class="color">
+    <div class="color">
         <h2><i class="fas fa-braille></i></h2>
         Bot Informationen:</h2>
-      </div>
-      <!--
+    </div>
+    <div>
+    <!--
       <ul>
         <li>Bot-Name: </li>
         <li>Bot-ID: </li>
         <li>Bot-Server: </li>
-      </ul>
-      -->
+      </ul>-->
     </div>
   </center>
 </body>
