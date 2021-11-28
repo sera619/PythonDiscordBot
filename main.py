@@ -58,7 +58,7 @@ class MyClient(discord.Client):
                 f'#   Bot Server name: {guild.name}   #\n'
                 f'#####################################\n')
             await K.change_bot_stats(severname = guild.name,userid= self.user.id,username = self.user) and K.home()
-            await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
+            await self.change_presence(status = 'This Bot is created by © S3R43o3',activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
     
     async def on_message(self, message):
         if message.author == self.user:
