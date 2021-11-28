@@ -21,7 +21,7 @@ def home():
   <title>Python Discord-Bot by © S3R43o3</title>
   <style>
     html{
-      background-color: darkslategrey;
+      background-color: rgb(182, 214, 214);
       color: darkred;
     }
     .color {
@@ -29,6 +29,10 @@ def home():
       border: 1px solid black;
       margin: 5;
       display: block;
+    }
+    .container {
+      font-style: bold;
+      font-size: xxl;
     }
   </style>
 </head>
@@ -44,11 +48,9 @@ def home():
         Python Discord-Bot © S3R43o3
       </h1>
     </div>
-    {%for i in range(times): %}
     <div class="color">
       <p>Bot ist vollständig initialsiert.</p>
     </div>
-    {% endfor %}
     <div class="container">
       <!--
       <ul>
