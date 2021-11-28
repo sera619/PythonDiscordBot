@@ -164,6 +164,6 @@ class MyClient(discord.Client):
 
 intents = discord.Intents.default()
 intents.members = True
+K()
 client = MyClient()
 client.run(TOKEN)
-K()
