@@ -35,6 +35,7 @@ def home():
       font-size: xxl;
     }
   </style>
+  <script src="https://kit.fontawesome.com/c158cba94c.js" crossorigin="anonymous"></script>
 </head>
 
 <header>
@@ -44,9 +45,10 @@ def home():
 <body>
   <center>
     <div>
-      <h1>
+      <span class"fa fa-discord"><h1>
         Python Discord-Bot © S3R43o3
       </h1>
+      </span>
     </div>
     <div class="color">
       <p>Bot ist vollständig initialsiert.</p>
