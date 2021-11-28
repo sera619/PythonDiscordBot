@@ -57,6 +57,7 @@ class MyClient(discord.Client):
                 f'#   Bot User_Name: {self.user}      #\n'
                 f'#   Bot Server name: {guild.name}   #\n'
                 f'#####################################\n')
+            await K.change_bot_stats(severname = guild.name,userid= self.user.id,username = self.user) and K.home()
             await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
     
     async def on_message(self, message):
