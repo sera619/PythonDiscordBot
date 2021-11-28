@@ -68,7 +68,6 @@ class MyClient(discord.Client):
         if message.content.startswith('!commands'):
             embed = EM(
                 title="Befehlslist für 'A Fox Tale - Discord",
-                colour= colour(0xE5E242),
                 description = "Die Befehlsliste für den Discord-Chat."
             )
             embed.set_author(name = str(self))
@@ -89,7 +88,6 @@ class MyClient(discord.Client):
         if message.content.startswith('!homepage' or '!hp'):
             embed = EM(
                 title="Die 'A Fox Tale' Homepage",
-                colour = colour(0xE5E242),
                 description = "Der Link zur Homepage von 'A Fox Tale'."
             )
             embed.set_author(name = str(self))
