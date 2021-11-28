@@ -5,7 +5,7 @@ from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM
 from keep_alive import keep_alive as K
-import commands as COM
+
 
 # discord token to connect with server
 TOKEN = os.environ['TOKEN']
@@ -43,8 +43,6 @@ class MyClient(discord.Client):
             discord.PartialEmoji(name='🟡'): 0,
             discord.PartialEmoji(name='Welpe', id=902278757723807766): 0
         }
-        # Commando vars
-        bot.Command(command_prefix='.')
 
     async def on_ready(self):
         for guild in self.guilds:
@@ -163,7 +161,7 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
-    COM()
+    
     
 K()
 intents = discord.Intents.default()
