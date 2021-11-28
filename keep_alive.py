@@ -1,11 +1,10 @@
 from flask import Flask
 from threading import Thread
-from main import MyClient
-# simpler webserver zum aktiv halten des bots
 
-user_id = MyClient.user.id
-user_name = MyClient.user.name
-server_name = MyClient.user.guild.name
+# simpler webserver zum aktiv halten des bots
+user_id = 'user id'
+user_name = 'user name'
+server_name = 'server name'
 app = Flask('')
 
 
