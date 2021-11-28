@@ -69,7 +69,7 @@ class MyClient(discord.Client):
         # -> !commands
         if message.content.startswith('!commands'):
             embed = EM(
-                title="_Befehlslist für 'A Fox Tale - Discord_",
+                title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
                 description = "\n"+
                              f'Befehls-Liste: \n'
                              f'1: !hi - *FoxBot* sagt dir "Hallo". \n'
