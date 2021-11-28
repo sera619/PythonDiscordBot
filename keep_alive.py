@@ -8,6 +8,12 @@ server_name = 'server name'
 app = Flask('')
 
 
+
+def change_bot_stats(servername, userid, username):
+  user_id = userid
+  user_name = username
+  server_name = servername
+
 @app.route('/')
 def home():
     return '''
