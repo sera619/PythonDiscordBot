@@ -11,9 +11,6 @@ def home():
     return '''
 <!DOCTYPE html>
 
-<head>
-  <link rel="stylesheet" href="templates/style.css" type="text/css" />
-</head>
 <header>
   <nav class="navbar"></nav>
 </header>
