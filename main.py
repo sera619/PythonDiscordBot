@@ -5,6 +5,7 @@ from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM
 from keep_alive import keep_alive as K
+import commands as COM
 
 # discord token to connect with server
 TOKEN = os.environ['TOKEN']
@@ -24,12 +25,14 @@ HOMEPAGE_URL = "https://sera619.github.io/FOX-TALE-Alpha/"
 DM_MESSAGE = f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
 f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\n\nSolltest du Fragen oder Probleme haben wende dich bitte an einen Administrator oder an den CEO.'
 f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
-# Commando vars
-bot = commands.Bot(command_prefix='.')
+
+bot = commands
 
 
 
 class MyClient(discord.Client):
+    # Commando vars
+    # initialize Client
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -40,6 +43,8 @@ class MyClient(discord.Client):
             discord.PartialEmoji(name='🟡'): 0,
             discord.PartialEmoji(name='Welpe', id=902278757723807766): 0
         }
+        # Commando vars
+        bot.Command(command_prefix='.')
 
     async def on_ready(self):
         for guild in self.guilds:
@@ -158,15 +163,10 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
-
-
-@bot.command()
-async def pint(ctx):
-    await ctx.send('pong')
+    COM()
     
 K()
 intents = discord.Intents.default()
 intents.members = True
 client = MyClient()
-bot.run(TOKEN)
 client.run(TOKEN)
