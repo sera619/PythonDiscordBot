@@ -20,7 +20,10 @@ COMMAND_MESSAGE = '\nFolgende Befehle kannst du verwenden:'
 LOGO_URL = "https://github.com/sera619/FOX-TALE-Alpha/blob/master/assets/img/icons/game_logo_colored.png?raw=true"
 # homepage url
 HOMEPAGE_URL = "https://sera619.github.io/FOX-TALE-Alpha/"
-
+# DM welcome message
+DM_MESSAGE = f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
+f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\n\nSolltest du Fragen oder Probleme haben wende dich bitte an einen Administrator oder an den CEO.'
+f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
 
 class MyClient(discord.Client):
     def __init__(self, *args, **kwargs):
@@ -40,6 +43,7 @@ class MyClient(discord.Client):
                 # debugger : print({guild.name})
                 break
             print(
+                f'\nBot ist initialisiert: \n'
                 f'Bot User_ID: {self.user.id} \n'
                 f'Bot User_Name: {self.user} \n'
                 f'Bot Server name: {guild.name} \n'
@@ -88,6 +92,14 @@ class MyClient(discord.Client):
                              f'Link: __{HOMEPAGE_URL}__')
             
             return await message.channel.send(embed = embed)
+    
+    async def on_member_join(self, member):
+        guild = member.guild
+        if guild.system_channel is not None:
+            to_send = 'Willkommen {0.mention} to {1.name}!'.format(member, guild)
+            await guild.system_channel.send(to_send)
+        dm_text = DM_MESSAGE
+        return await member.create_dm(message = dm_text)
     
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
         '''vergibt eine Rolle anhand des emoji'''
