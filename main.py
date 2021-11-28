@@ -74,7 +74,8 @@ async def on_member_join(member):
         f"--- noch nicht fertig --- =D")
 
 
-RR
+
+RR.__init__()
 
 K()
 client.run(TOKEN)
