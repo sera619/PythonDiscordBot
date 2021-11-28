@@ -156,5 +156,7 @@ class MyClient(discord.Client):
             pass
     
 K()
+intents = discord.Intents.default()
+intents.members = True
 client = MyClient()
 client.run(TOKEN)
