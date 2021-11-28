@@ -1,13 +1,39 @@
-from flask import Flask, render_template
+from flask import Flask
 from threading import Thread
 #simpler webserver zum aktiv halten des bots
+
 
 app = Flask('')
 
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return '''
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="templates/style.css" type="text/css" />
+</head>
+<header>
+    <nav class="navbar"></nav>
+</header>
+
+<body>
+    <div class="block">
+        <h1>
+            Python Discord-Bot © S3R43o3
+        </h1>
+    </div>
+    <div class="container">
+        <p class="text">
+
+        </p>
+    </div>
+</body>
+<footer>
+</footer>
+
+</html>'''
 
 
 def run():
