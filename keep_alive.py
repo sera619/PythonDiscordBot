@@ -11,20 +11,22 @@ user_id: str
 
 
 @app.route('/')
+@app.route('/index')
 def home():
     return'''
 <!DOCTYPE html>
 
 <header>
-  <nav class="navbar"></nav>
+  <nav class="navbar">
+  </nav>
 </header>
-
 <body>
   <center>
     <div class="block">
       <h1>
         Python Discord-Bot © S3R43o3
       </h1>
+      <p>Bot ist vollständig initialsiert.</p>
     </div>
     
     <div class="container">
