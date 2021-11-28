@@ -49,12 +49,14 @@ class MyClient(discord.Client):
             if guild.name != SERVER_NAME:
                 # debugger : print({guild.name})
                 break
-            print(
-                f'\nBot ist initialisiert: \n'
-                f'Bot User_ID: {self.user.id} \n'
-                f'Bot User_Name: {self.user} \n'
-                f'Bot Server name: {guild.name} \n'
-                f'Bot Server Roles: {guild.roles} \n')
+            print("\n"+
+                f'#####################################\n'
+                f'#      Bot ist initialisiert:       #\n'
+                f'#***********************************#\n'
+                f'#   Bot User_ID: {self.user.id}     #\n'
+                f'#   Bot User_Name: {self.user}      #\n'
+                f'#   Bot Server name: {guild.name}   #\n'
+                f'#####################################\n')
             await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
     
     async def on_message(self, message):
