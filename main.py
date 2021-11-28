@@ -67,17 +67,16 @@ class MyClient(discord.Client):
         # -> !commands
         if message.content.startswith('!commands'):
             embed = EM(
-                title="Befehlslist für 'A Fox Tale - Discord",
-                description = "Die Befehlsliste für den Discord-Chat."
-            )
-            embed.set_author(name = self.user.name)
-            embed.set_thumbnail(url= LOGO_URL)
-            embed.set_footer(text="\n"+
+                title="_Befehlslist für 'A Fox Tale - Discord_",
+                description = "\n"+
                              f'Befehls-Liste: \n'
                              f'1: !hi - *FoxBot* sagt dir "Hallo". \n'
                              f'2: !commands - *FoxBot* zeigt dir die ChatBefehl-Liste. \n'
                              f'3: !homepage - *FoxBot* erstellt einen Link zur Spiel-Homepage. \n'
-                             f'4: !invite - *FoxBot* generiert einen Invite-Link für diesen Discord-Server. \n')
+                             f'4: !invite - *FoxBot* generiert einen Invite-Link für diesen Discord-Server. \n'
+            )
+            embed.set_author(name = "")
+            embed.set_thumbnail(url= LOGO_URL)
             return await message.channel.send(embed=embed)
         
         # -> !hi
@@ -87,14 +86,13 @@ class MyClient(discord.Client):
         # -> !homepage
         if message.content.startswith('!homepage' or '!hp'):
             embed = EM(
-                title="Die 'A Fox Tale' Homepage",
-                description = "Der Link zur Homepage von 'A Fox Tale'."
-            )
-            embed.set_author(name = self.user.name)
-            embed.set_thumbnail(url = LOGO_URL)
-            embed.set_footer(text = "\n"+
+                title="_Die 'A Fox Tale' Homepage_",
+                description = "\n"+
                              f"*Der Link zur offiziellen Homepage von 'A Fox Tale':* \n"
-                             f'Link: __{HOMEPAGE_URL}__')
+                             f'Link: __{HOMEPAGE_URL}__'
+            )
+            embed.set_author(name = "")
+            embed.set_thumbnail(url = LOGO_URL)
             
             return await message.channel.send(embed = embed)
     

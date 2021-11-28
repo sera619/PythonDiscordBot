@@ -7,7 +7,7 @@ app = Flask('')
 
 @app.route('/')
 def home():
-    return "Discord Web-Server ist online!"
+    return app.render_template('index.html')
 
 
 def run():
