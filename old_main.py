@@ -6,7 +6,6 @@ from datetime import datetime
 from discord.ext import commands
 from discord.utils import get as G
 from keep_alive import keep_alive as K
-from reactionrole import Reaction as RR
 
 
 role_dic = {"RUDEL": 902278661523251210, "WELPE": 902278757723807766}
