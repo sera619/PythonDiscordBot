@@ -7,7 +7,7 @@ app = Flask('')
 
 @app.route('/')
 def home():
-    return app.render_template('index.html')
+    return render_template('index.html')
 
 
 def run():
