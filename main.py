@@ -86,7 +86,7 @@ class MyClient(discord.Client):
             return await message.channel.send(WELCOME_MESSAGE.format(user=message.author.name))
         
         # -> !homepage
-        if message.content.startswith('!homepage' or '!hp'):
+        if message.content.startswith('!homepage'):
             embed = EM(
                 title="_Die 'A Fox Tale' Homepage_",
                 description = "\n"+
