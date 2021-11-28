@@ -72,10 +72,10 @@ class MyClient(discord.Client):
                 title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
                 description = "\n"+
                              f'Befehls-Liste: \n'
-                             f'1: !hi - *FoxBot* sagt dir "Hallo". \n'
-                             f'2: !commands - *FoxBot* zeigt dir die ChatBefehl-Liste. \n'
-                             f'3: !homepage - *FoxBot* erstellt einen Link zur Spiel-Homepage. \n'
-                             f'4: !invite - *FoxBot* generiert einen Invite-Link für diesen Discord-Server. \n'
+                             f'1: !hi - _FoxBot_ sagt dir "Hallo". \n'
+                             f'2: !commands - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
+                             f'3: !homepage - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
+                             f'4: !invite - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url= LOGO_URL)
@@ -90,8 +90,8 @@ class MyClient(discord.Client):
             embed = EM(
                 title="_Die 'A Fox Tale' Homepage_",
                 description = "\n"+
-                             f"*Der Link zur offiziellen Homepage von 'A Fox Tale':* \n"
-                             f'Link: __{HOMEPAGE_URL}__'
+                             f"_Der Link zur offiziellen Homepage von 'A Fox Tale':_ \n"
+                             f'Link: *{HOMEPAGE_URL}*'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url = LOGO_URL)
