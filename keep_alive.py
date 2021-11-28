@@ -1,9 +1,11 @@
 from flask import Flask
 from threading import Thread
-from main import main
+from main import MyClient
 # simpler webserver zum aktiv halten des bots
 
-
+user_id = MyClient.user.id
+user_name = MyClient.user.name
+server_name = MyClient.user.guild.name
 app = Flask('')
 
 
@@ -26,9 +28,9 @@ def home():
     
     <div class="container">
       <ul>
-        <li>Bot-Name: {main.user.name}</li>
-        <li>Bot-ID: {main.user.id}</li>
-        <li>Bot-Server: {main.guild.name}</li>
+        <li>Bot-Name: {user_name}</li>
+        <li>Bot-ID: {user_id}</li>
+        <li>Bot-Server: {server_name}</li>
       </ul>
     </div>
   </center>
