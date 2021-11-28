@@ -26,7 +26,6 @@ online_users = client.users
 @client.event
 async def on_ready():
     print('Bot ist eingeloggt als: {0.user}'.format(client))
-    client.wait_until_ready()
     for guild in client.guilds:
         if guild.name != SERVER_NAME:
             # debugger: print({guild.name})
