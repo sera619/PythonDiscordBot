@@ -58,7 +58,6 @@ class MyClient(discord.Client):
                 f'#   Bot Server name: {guild.name}   #\n'
                 f'#####################################\n')
             await self.change_presence(status = 'This Bot is created by © S3R43o3',activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
-    
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -72,10 +71,10 @@ class MyClient(discord.Client):
                 title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
                 description = "\n"+
                              f'Befehls-Liste: \n'
-                             f'1: !hi - _FoxBot_ sagt dir "Hallo". \n'
-                             f'2: !commands - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
-                             f'3: !homepage - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
-                             f'4: !invite - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
+                             f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
+                             f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
+                             f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
+                             f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url= LOGO_URL)
