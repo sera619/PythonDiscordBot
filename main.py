@@ -124,7 +124,8 @@ class MyClient(discord.Client):
                 title = '_"A Fox Tale" - Entwicklungsstatus_',
                 description = "\n"+
                         f'Aktuell befinden wir uns in der internen Alpha-Testphase. \n'
-                        f'Derzeitige Version: _{GAME_VERSION}_\n\n'
+                        f'Derzeitige Version: \n\n'
+                        f'_{GAME_VERSION}_ \n\n'
                         f'Eine erste spielbare Demo wird spätestens ab dem _31.12.2021_ verfügbar sein.'
                         f'Alle weiteren Informationen zum Spiel findest du unter:\n'
                         f'*{HOMEPAGE_URL}*'
