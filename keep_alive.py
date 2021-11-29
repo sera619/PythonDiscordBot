@@ -48,7 +48,7 @@ def home():
       </h1>
       <h2><i class="fa fa-broadcast-tower></i></h2>
       <p>Bot ist vollständig initialsiert.</p>      
-        <h2><i class="fa fa-braille></i>Bot Informationen:</h2>
+        <h2><i class="fas fa-braille></i>Bot Informationen:</h2>
     </div>
     <div>
     <!--
