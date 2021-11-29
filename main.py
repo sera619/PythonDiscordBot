@@ -140,7 +140,8 @@ class MyClient(discord.Client):
                 description = "\n"+
                 f'Alle Musik-Bot Befehle. \n'
                 f'Bitte beachte die folgenden Befehle nur im #musicspam Kanal zu verwenden. \n'
-                f'Vorsätzliche wiederholte Missachtung führt zu Konsequenzen. \n\n'
+                f'Vorsätzliche wiederholte Missachtung führt zu Konsequenzen. \n'
+                f'Beispiel: ```#play https://www.youtube.com/watch?v=Q0wbyQRRQJA``` \n\n'
                 f'```#play``` - Fügt einen Song zur Warteschlange hinzu und spielt ihn ab. \n'
                 f'```#search``` - Durchsucht YouTube nach Ergebnissen zum Abspielen. \n'
                 f'```#queue``` - Zeigt die Warteschlange der aktuellen Songs in der Wiedergabeliste an. \n'
