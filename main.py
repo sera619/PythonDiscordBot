@@ -81,7 +81,8 @@ class MyClient(discord.Client):
                              f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
                              f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
                              f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
-                             f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels.'
+                             f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels. \n'
+                             f'6: ```!musik```  - _FoxBot_ zeigt dir die Befehlsliste für den MusikBot. \n'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url= LOGO_URL)
