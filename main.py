@@ -66,7 +66,7 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         if message.author == self.user:
             return
-        # message commands
+        # message role change
         if message.content.startswith('!welpe'):
             role = G(message.guild.roles, name="Welpe")
             return await self.add_roles(message.author, role)
