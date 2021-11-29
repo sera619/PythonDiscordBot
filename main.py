@@ -86,7 +86,7 @@ class MyClient(discord.Client):
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url= LOGO_URL)
-            return await message.channel.send(embed=embed)
+            return await message.reply(embed=embed)
         
         # -> !hi
         if message.content.startswith('!hi'):
