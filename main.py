@@ -76,11 +76,12 @@ class MyClient(discord.Client):
                 title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
                 description = "\n"+
                              f'Eine Liste der Chat-Befehele die du verwenden kannst. \n'
-                             f'Gebe hierzu im Chat folgende Befehle ein:\n'
+                             f'Gebe hierzu im Chat folgende Befehle ein:\n\n'
                              f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
                              f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
                              f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
                              f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
+                             f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels.'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url= LOGO_URL)
