@@ -29,8 +29,6 @@ def home():
       border: 1px solid black;
       margin: 5;
       display: block;
-    }
-    .container {
       font-style: bold;
       font-size: xxl;
     }
@@ -44,7 +42,7 @@ def home():
 </header>
 <body>
   <center>
-    <div>
+    <div class="color">
       <h1><i class="fa-brands fa-python</i><i class="fa-brands fa-discord"></i></h1>
         <h1>Python Discord-Bot © S3R43o3
       </h1>
