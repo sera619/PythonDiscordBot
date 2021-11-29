@@ -43,7 +43,7 @@ def home():
 <body>
   <center>
     <div class="color">
-      <h1><i class="fa-brands fa-python</i><i class="fa-brands fa-discord"></i></h1>
+      <h1><i class="fa-brands fab-python</i><i class="fa-brands fab-discord"></i></h1>
         <h1>Python Discord-Bot © S3R43o3
       </h1>
       <h2><i class="fa fa-broadcast-tower></i></h2>
