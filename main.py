@@ -3,9 +3,13 @@ import os
 from discord import colour
 from discord.utils import get as G
 from discord.ext import commands
-from discord.embeds import Embed as EM
+from discord.embeds import Embed as EM, EmptyEmbed
 from keep_alive import keep_alive as K
 
+
+
+# spiel versionsnummer
+GAME_VERSION = "v0.0.1.0.1"
 # discord invit link
 INVITE_LINK = os.environ['INVITE_LINK']
 # discord token to connect with server
@@ -98,6 +102,27 @@ class MyClient(discord.Client):
             embed.set_thumbnail(url = LOGO_URL)
             
             return await message.reply(embed = embed)
+        
+        # -> !invite
+        if message.content.startswith('!invite'):
+            embed = EM(
+                title = '_"A Fox Tale" - Discord-Einladungslink_',
+                description = "\n"+
+                            f"_Der gewünschte Einladungslink:_ \n"
+                            f'{INVITE_LINK}'
+            )
+        
+        # -> !status
+        if message.content.startswith('!status'):
+            embed = EM(
+                title = '_"A Fox Tale" - Entwicklungsstatus_',
+                description = "\n"+
+                        f'Aktuell befinden wir uns in der internen Alpha-Testphase. \n'
+                        f'Derzeitige Version: _{GAME_VERSION}_\n\n'
+                        f'Eine erste spielbare Demo wird spätestens ab dem _31.12.2021_ verfügbar sein.'
+                        f'Alle weiteren Informationen zum Spiel findest du unter:\n'
+                        f'*{HOMEPAGE_URL}*'
+            )   
     
     async def on_member_join(self, member):
         guild = member.guild
