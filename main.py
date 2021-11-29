@@ -6,7 +6,8 @@ from discord.ext import commands
 from discord.embeds import Embed as EM
 from keep_alive import keep_alive as K
 
-
+# discord invit link
+INVITE_LINK = os.environ['INVITE_LINK']
 # discord token to connect with server
 TOKEN = os.environ['TOKEN']
 # server name 
