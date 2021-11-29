@@ -11,6 +11,8 @@
 - [x]   Reactionrole
 - [x]   Automatic anwser to chatcommands (prefix: ' ! ')
 - [ ]   Musicbot
+- [x]   set custom status
+- [x]   chat moderation
 
 ## Need Help? ##
 
