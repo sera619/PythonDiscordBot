@@ -90,7 +90,7 @@ class MyClient(discord.Client):
         
         # -> !hi
         if message.content.startswith('!hi'):
-            return await message.reply(WELCOME_MESSAGE.format(user=message.author.name), mention = True)
+            return await message.reply(WELCOME_MESSAGE.format(user=message.author.name))
                 
         # -> !homepage
         if message.content.startswith('!homepage'):
