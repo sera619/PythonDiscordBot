@@ -52,10 +52,8 @@ def home():
     </div>
     <div class="color">
       <p><i class="fas fa-broadcast-tower></i>
-      Bot ist vollständig initialsiert.</p>
-    </div>
-    <div class="color">
-        <h2><i class="fas fa-braille></i></h2>
+      Bot ist vollständig initialsiert.</p>   
+        <h2><i class="fas fa-braille></i>
         Bot Informationen:</h2>
     </div>
     <div>
