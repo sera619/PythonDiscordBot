@@ -125,8 +125,10 @@ class MyClient(discord.Client):
                 description = "\n"+
                         f'Aktuell befinden wir uns in der internen Alpha-Testphase. \n'
                         f'Derzeitige Version: \n\n'
-                        f'_{GAME_VERSION}_ \n\n'
-                        f'Eine erste spielbare Demo wird spätestens ab dem _31.12.2021_ verfügbar sein.'
+                        f'__{GAME_VERSION}__ \n\n'
+                        f'Eine erste spielbare Demo wird spätestens ab dem: \n\n'
+                        f'__31.12.2021__ \n\n'
+                        f'verfügbar sein. \n'
                         f'Alle weiteren Informationen zum Spiel findest du unter:\n'
                         f'*{HOMEPAGE_URL}*'
             )
