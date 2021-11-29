@@ -112,6 +112,10 @@ class MyClient(discord.Client):
                             f"_Der gewünschte Einladungslink:_ \n"
                             f'{INVITE_LINK}'
             )
+            embed.set_author(name = "")
+            embed.set_thumbnail(url = LOGO_URL)
+    
+            return await message.reply(embed = embed)
         
         # -> !status
         if message.content.startswith('!status'):
@@ -123,8 +127,35 @@ class MyClient(discord.Client):
                         f'Eine erste spielbare Demo wird spätestens ab dem _31.12.2021_ verfügbar sein.'
                         f'Alle weiteren Informationen zum Spiel findest du unter:\n'
                         f'*{HOMEPAGE_URL}*'
-            )   
+            )
+            embed.set_author(name = "")
+            embed.set_thumbnail(url = LOGO_URL)
     
+            return await message.reply(embed = embed)
+        # -> !musik
+        if message.content.startswith('!musik'):
+            embed = EM(
+                title='_Die Musik-Bot Befehls-Liste_',
+                description = "\n"+
+                f'Alle Musik-Bot Befehle. \n'
+                f'Bitte beachte die folgenden Befehle nur im #musicspam Kanal zu verwenden. \n'
+                f'Vorsätzliche wiederholte Missachtung führt zu Konsequenzen. \n\n'
+                f'#play - Fügt einen Song zur Warteschlange hinzu und spielt ihn ab. \n'
+                f'#search - Durchsucht YouTube nach Ergebnissen zum Abspielen. \n'
+                f'#queue - Zeigt die Warteschlange der aktuellen Songs in der Wiedergabeliste an. \n'
+                f'#stop- Stoppt den aktuellen Song und löscht die gesamte Musik-Wiedergabeliste. \n'
+                f'#vol- Ändert/Zeigt die aktuelle Lautstärke an. \n'
+                f'#pause- Pausiert den aktuell wiedergegebenen Track. \n'
+                f'#np- Zeigt an, welchen Song der Bot gerade spielt. \n'
+                f'#skip- Überspringt den aktuellen Song. \n'
+                f'#repeat- Schaltet den Wiederholmodus ein/aus. \n'
+                f'#seek- Sucht einen bestimmten Punkt in der aktuellen Spur. \n'
+                f'#24/7- Schaltet den 24/7-Modus ein/aus, so dass der Bot den Sprachkanal nicht verlässt, bis du ihn stoppst. \n'
+                )
+            embed.set_author(name = "")
+            embed.set_thumbnail(url = LOGO_URL)
+    
+            return await message.reply(embed = embed)
     async def on_member_join(self, member):
         guild = member.guild
         if guild.system_channel is not None:
