@@ -70,7 +70,8 @@ class MyClient(discord.Client):
             embed = EM(
                 title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
                 description = "\n"+
-                             f'Befehls-Liste: \n'
+                             f'Eine Liste der Chat-Befehele die du verwenden kannst. \n'
+                             f'Gebe hierzu im Chat folgende Befehle ein:\n'
                              f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
                              f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
                              f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
