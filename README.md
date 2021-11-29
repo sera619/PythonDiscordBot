@@ -14,6 +14,8 @@
 - [x]   set custom status
 - [x]   chat moderation
 
+>More features are planned for future.
+
 ## Need Help? ##
 
->Contact me via GitHub Buildin issue. I wanna try to react as soon as possible.
+>Contact me via GitHub-buildin-Issuefunction. I wanna try to react as soon as possible.
