@@ -125,8 +125,8 @@ class MyClient(discord.Client):
                 title = "_'A Fox Tale' - Emoji-Liste_",
                 description = "\n"+
                 f'Um die Custom-Emojis zu verwenden nutze folgende Codes: \n\n'
-                f'```:fox_red:``` - :fox_red: - coloriertes GameLogo \n'
-                f'```:fox_white:``` - :fox_white: - weißes GameLogo \n'
+                f'```:fox_red:``` - coloriertes GameLogo \n'
+                f'```:fox_white:``` - weißes GameLogo \n'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url = LOGO_URL)
