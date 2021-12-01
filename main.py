@@ -75,14 +75,15 @@ class MyClient(discord.Client):
             embed = EM(
                 title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
                 description = "\n"+
-                             f'Eine Liste der Chat-Befehle die du verwenden kannst. \n'
-                             f'Gebe hierzu im Chat folgende Befehle ein:\n\n'
-                             f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
-                             f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
-                             f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
-                             f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
-                             f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels. \n'
-                             f'6: ```!musik```  - _FoxBot_ zeigt dir die Befehlsliste für den Musik-Bot. \n'
+                            f'Eine Liste der Chat-Befehle die du verwenden kannst. \n'
+                            f'Gebe hierzu im Chat folgende Befehle ein:\n\n'
+                            f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
+                            f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
+                            f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
+                            f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
+                            f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels. \n'
+                            f'6: ```!musik```  - _FoxBot_ zeigt dir die Befehlsliste für den Musik-Bot. \n'
+                            f'7: ```!emoji``` - _FoxBot_ zeigt dir eine Liste mit den Custom-Emojis vom Server. \n'
             )
             embed.set_author(name = "")
             embed.set_thumbnail(url= LOGO_URL)
@@ -116,6 +117,19 @@ class MyClient(discord.Client):
             embed.set_author(name = "")
             embed.set_thumbnail(url = LOGO_URL)
     
+            return await message.reply(embed = embed)
+        
+        # -> emojis
+        if message.content.startswith('!emoji'):
+            embed = EM(
+                title = "_'A Fox Tale' - Emoji-Liste_",
+                description = "\n"+
+                f'Um die Custom-Emojis zu verwenden nutze folgende Codes: \n\n'
+                f'```:fox_red:``` - :fox_red: - coloriertes GameLogo \n'
+                f'```:fox_white:``` - :fox_white: - weißes GameLogo \n'
+            )
+            embed.set_author(name = "")
+            embed.set_thumbnail(url = LOGO_URL)
             return await message.reply(embed = embed)
         
         # -> !status
