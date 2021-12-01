@@ -169,9 +169,9 @@ class MyClient(discord.Client):
             else:
                 return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
         # -> custom state
-        if message.content.startswith('!state.custom'):
+        if message.content.startswith('!state.comp'):
             if message.author =="S3R43o3":
-                return await self.change_presence(activity=discord.Activity(type=discord.ActivityType.custom, name="Der Buttler",type=5))
+                return await self.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="Der Buttler"))
             else:
                 return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
                     
