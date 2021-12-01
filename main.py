@@ -168,7 +168,7 @@ class MyClient(discord.Client):
                 await message.reply("Status wurde auf: 'Streaming' geändert.")
                 return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
             else:
-                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ =D")
+                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ :smile:")
         # -> custom state
         if message.content.startswith('!state.comp'):
             print(message.author.id)
@@ -176,7 +176,7 @@ class MyClient(discord.Client):
                 await self.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="Der Buttler"))
                 return await message.reply("Status wurde auf: 'Comp' geändert.") 
             else:
-                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ =D")
+                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ :smile:")
         # -> Todos
         if message.content.startswith('!todo.audio'):
             if message.author.id == 704713112871239721 or 259031556880859136:
@@ -196,7 +196,7 @@ class MyClient(discord.Client):
                 embed.set_thumbnail(url = LOGO_URL)
                 return await message.reply(embed = embed)
             else:
-                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ =D")
+                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ :smile:")
         
     async def on_member_join(self, member):
         guild = member.guild
