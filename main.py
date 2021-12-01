@@ -161,14 +161,14 @@ class MyClient(discord.Client):
             embed.set_thumbnail(url = LOGO_URL)
     
             return await message.reply(embed = embed)
-        
+        # -> admin commands
         # -> stream state 
         if message.content.startswith('!state.stream'):
             if message.author.id == 259031556880859136:
                 await message.reply("Status wurde auf: 'Streaming' geändert.")
                 return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
             else:
-                return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
+                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ =D")
         # -> custom state
         if message.content.startswith('!state.comp'):
             print(message.author.id)
@@ -176,8 +176,28 @@ class MyClient(discord.Client):
                 await self.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="Der Buttler"))
                 return await message.reply("Status wurde auf: 'Comp' geändert.") 
             else:
-                return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
-                    
+                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ =D")
+        # -> Todos
+        if message.content.startswith('!todo.audio'):
+            if message.author.id == 704713112871239721 or 259031556880859136:
+                embed = EM(
+                    title="_Audio TODO-Liste:_",
+                    description = "\n"+
+                    f'Track für den Wald bzw. Feldebene - [ ] \n'
+                    f'Combat Track: DK C3 boss blues quest abgeschlossen - [ ]\n'
+                    f'menü selection sound; button klicks - [ ] \n'
+                    f'error - [ ] \n'
+                    f'"textschreiben" letterprintsound - [ ] \n'
+                    f'höhlen track - [ ] \n'
+                    f'verließ sound - [x] \n'
+                    f'sound zum reisen/fliegen/reiten: Secret of Mana OST Prophecy - [ ]\n'
+                )
+                embed.set_author(name ="")
+                embed.set_thumbnail(url = LOGO_URL)
+                return await message.reply(embed = embed)
+            else:
+                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ =D")
+        
     async def on_member_join(self, member):
         guild = member.guild
         if guild.system_channel is not None:
