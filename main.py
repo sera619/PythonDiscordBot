@@ -164,6 +164,7 @@ class MyClient(discord.Client):
         
         # -> stream state 
         if message.content.startswith('!state.stream'):
+            print(message.author)
             if message.author == "Sera#4920":
                 return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")),message.reply("Status wurde auf: 'Streaming' geändert.")
             else:
