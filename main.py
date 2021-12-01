@@ -62,7 +62,7 @@ class MyClient(discord.Client):
                 f'#   Bot User_Name: {self.user}      #\n'
                 f'#   Bot Server name: {guild.name}   #\n'
                 f'#####################################\n')
-            await self.change_presence(status = 'This Bot is created by © S3R43o3',activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
+            await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -161,6 +161,20 @@ class MyClient(discord.Client):
             embed.set_thumbnail(url = LOGO_URL)
     
             return await message.reply(embed = embed)
+        
+        # -> stream state 
+        if message.content.startswith('!state.stream'):
+            if message.author == "S3R43o3":
+                return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")),message.reply("Status wurde auf: 'Streaming' geändert.")
+            else:
+                return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
+        # -> custom state
+        if message.content.startswith('!state.custom'):
+            if message.author =="S3R43o3":
+                return await self.change_presence(activity=discord.Activity(type=discord.ActivityType.custom, name="Der Buttler",type=5))
+            else:
+                return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
+                    
     async def on_member_join(self, member):
         guild = member.guild
         if guild.system_channel is not None:
