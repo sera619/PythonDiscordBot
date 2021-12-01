@@ -164,15 +164,17 @@ class MyClient(discord.Client):
         
         # -> stream state 
         if message.content.startswith('!state.stream'):
-            print(message.author)
             if message.author == "Sera#4920":
-                return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")),message.reply("Status wurde auf: 'Streaming' geändert.")
+                await message.reply("Status wurde auf: 'Streaming' geändert.")
+                return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
             else:
                 return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
         # -> custom state
         if message.content.startswith('!state.comp'):
+            print(message.author.id)
             if message.author =="Sera#4920":
-                return await self.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="Der Buttler"))
+                await self.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="Der Buttler"))
+                return message.reply("Status wurde auf: 'Comp' geändert.") 
             else:
                 return await message.reply("Du bist leider kein Admin!\nNetter versuch! =D") 
                     
