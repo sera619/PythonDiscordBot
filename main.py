@@ -10,7 +10,7 @@ from keep_alive import keep_alive as K
 
 
 E_MESSAGE= "\nDu gehörst nicht zum :fox_red: __Development-Team__ \n__Netter Versuch!__ :smile:"
-maintain_mode: bool
+
 # -> Member ID´s 
 SAMU_ID = 704713112871239721
 CEO_ID = 259031556880859136
@@ -42,6 +42,7 @@ f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-
 
 
 class MyClient(discord.Client):
+    maintain_mode: bool
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
@@ -193,8 +194,8 @@ class MyClient(discord.Client):
         if message.content.startswith('!state.maintain'):
             print(message.author.id)
             if message.author.id == CEO_ID:
-                if self.maintainmode == False:
-                    self.maintainmode = True
+                if self.maintain_mode == False:
+                    self.maintain_mode = True
                     await message.reply("\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren.")
                     await self.change_presence(status=discord.Status.do_not_disturb ,activity=discord.Activity(type=discord.ActivityType.competing, name="der Werkstatt"))
                     return await message.reply("\nSystem-Wartung vollständig initialisiert.")
@@ -205,8 +206,8 @@ class MyClient(discord.Client):
         # -> stop maintainmode
         if message.content.startswith('!state.return'):
             if message.author.id == CEO_ID:
-                if self.maintainmode == True:
-                    self.maintainmode = False
+                if self.maintain_mode == True:
+                    self.maintain_mode = False
                     await message.reply("\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert.")
                     await self.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="!commands"))
                     return await message.reply("\nAlle Systeme bereit.\nDanke für das Update")
