@@ -1,6 +1,7 @@
 import discord
 import os
 from discord import colour
+from discord.enums import Status
 from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM, EmptyEmbed
@@ -8,6 +9,12 @@ from keep_alive import keep_alive as K
 
 
 
+E_MESSAGE= "\nDu gehörst nicht zum :fox_red: __Development-Team__ \n__Netter Versuch!__ :smile:"
+
+maintainmode = False
+# -> Member ID´s 
+SAMU_ID = 704713112871239721
+CEO_ID = 259031556880859136
 # spiel versionsnummer
 GAME_VERSION = "v0.0.1.0.1"
 # discord invit link
@@ -178,22 +185,39 @@ class MyClient(discord.Client):
         # -> admin commands
         # -> stream state 
         if message.content.startswith('!state.stream'):
-            if message.author.id == 259031556880859136:
+            if message.author.id == CEO_ID:
                 await message.reply("Status wurde auf: 'Streaming' geändert.")
                 return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
             else:
-                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ :smile:")
-        # -> custom state
-        if message.content.startswith('!state.comp'):
+                return await message.reply("\nDu gehörst nicht zum :fox_red: __Development-Team__.\nNetter _Versuch!_ :smile:")
+        # -> Maintain-Mode
+        if message.content.startswith('!state.maintain'):
             print(message.author.id)
-            if message.author.id == 259031556880859136:
-                await self.change_presence(activity=discord.Activity(type=discord.ActivityType.competing, name="Der Buttler"))
-                return await message.reply("Status wurde auf: 'Comp' geändert.") 
+            if message.author.id == CEO_ID:
+                if maintainmode == False:
+                    maintainmode(True)
+                    await message.reply("\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren.")
+                    await self.change_presence(status=discord.Status.do_not_disturb ,activity=discord.Activity(type=discord.ActivityType.competing, name="der Werkstatt"))
+                    return await message.reply("\nSystem-Wartung vollständig initialisiert.")
+                else: 
+                    return await message.reply("\n... ich befinde mich bereits im Wartungsmodus ...")
             else:
-                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ :smile:")
+                return await message.reply(E_MESSAGE)
+        # -> stop maintainmode
+        if message.content.startswith('!state.return'):
+            if message.author.id == CEO_ID:
+                if maintainmode == True:
+                    maintainmode(False)
+                    await message.reply("\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert.")
+                    await self.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="!commands"))
+                    return await message.reply("\nAlle Systeme bereit.\nDanke für das Update")
+                else:
+                    return await message.reply("\nDazu müsste ich ersteinmal weg sein.")
+            else:
+                return await message.reply(E_MESSAGE)
         # -> Todos
         if message.content.startswith('!todo.audio'):
-            if message.author.id == 704713112871239721 or 259031556880859136:
+            if message.author.id == SAMU_ID or CEO_ID:
                 embed = EM(
                     title="_Audio TODO-Liste:_",
                     description = "\n"+
@@ -210,7 +234,7 @@ class MyClient(discord.Client):
                 embed.set_thumbnail(url = LOGO_URL)
                 return await message.reply(embed = embed)
             else:
-                return await message.reply("\nDu gehörst nicht zum __Development-Team__.\nNetter _Versuch!_ :smile:")
+                return await message.reply(E_MESSAGE)
         
     async def on_member_join(self, member):
         guild = member.guild
