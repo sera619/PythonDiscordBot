@@ -12,3 +12,8 @@ html{
     align-content: center;
     display: block;
 }
+
+.navbar{
+    align-content: center;
+    display: flex;
+}
