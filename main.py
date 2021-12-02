@@ -12,8 +12,8 @@ from keep_alive import keep_alive as K
 E_MESSAGE= "\nDu gehörst nicht zum :fox_red: __Development-Team__ \n__Netter Versuch!__ :smile:"
 
 # -> Member ID´s 
-SAMU_ID = 704713112871239721
-CEO_ID = 259031556880859136
+SAMU_ID = os.environ['SAMU_ID']
+CEO_ID = os.environ['CEO_ID']
 # spiel versionsnummer
 GAME_VERSION = "v0.0.1.0.1"
 # discord invit link
