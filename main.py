@@ -9,7 +9,15 @@ from keep_alive import keep_alive as K
 
 
 
-E_MESSAGE= "\nDu gehörst nicht zum :fox_red: __Development-Team__ \n__Netter Versuch!__ :smile:"
+server_name: str
+server_id: int 
+bot_name: str
+bot_role: str
+bot_id: int
+
+
+
+E_MESSAGE= "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 
 # -> Member ID´s 
 SAMU_ID = os.environ['SAMU_ID']
@@ -69,7 +77,15 @@ class MyClient(discord.Client):
                 f'#   Bot User_Name: {self.user}      #\n'
                 f'#   Bot Server name: {guild.name}   #\n'
                 f'#####################################\n')
-            await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="S3R43o3"))
+            global server_id
+            global server_name
+            global bot_name
+            global bot_id
+            bot_id = int(self.user.id)
+            bot_name = str(self.user)
+            server_name = str(guild.name)
+            server_id = int(guild.id)            
+            await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.listening, name="!commands"))
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -189,7 +205,7 @@ class MyClient(discord.Client):
                 await message.reply("Status wurde auf: 'Streaming' geändert.")
                 return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
             else:
-                return await message.reply("\nDu gehörst nicht zum :fox_red: __Development-Team__.\nNetter _Versuch!_ :smile:")
+                return await message.reply("\nDu gehörst nicht zum :fox_red: __Development-Team__ .\nNetter _Versuch!_ :smile:")
         # -> Maintain-Mode
         if message.content.startswith('!state.maintain'):
             print(message.author.id)
