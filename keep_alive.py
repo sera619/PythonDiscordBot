@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 from threading import Thread
 
 # simpler webserver zum aktiv halten des bots
@@ -68,7 +67,7 @@ def home():
 
 @app.route('/index')
 def index():
-  return render_template()
+  return render_template('index.html')
 
 def run():
     app.run(host='0.0.0.0', port=8080)
