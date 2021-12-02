@@ -9,11 +9,11 @@ from keep_alive import keep_alive as K
 
 
 
-server_name: str
-server_id: int 
-bot_name: str
-bot_role: str
-bot_id: int
+server_name="" 
+server_id ="" 
+bot_name ="" 
+bot_role = ""
+bot_id = ""
 
 
 
@@ -81,10 +81,10 @@ class MyClient(discord.Client):
             global server_name
             global bot_name
             global bot_id
-            bot_id = int(self.user.id)
-            bot_name = str(self.user)
-            server_name = str(guild.name)
-            server_id = int(guild.id)            
+            bot_id = self.user.id
+            bot_name = self.user
+            server_name = guild.name
+            server_id = guild.id            
             await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.listening, name="!commands"))
     async def on_message(self, message):
         if message.author == self.user:
