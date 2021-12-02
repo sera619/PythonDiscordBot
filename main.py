@@ -185,7 +185,7 @@ class MyClient(discord.Client):
         # -> admin commands
         # -> stream state 
         if message.content.startswith('!state.stream'):
-            if message.author.id == CEO_ID:
+            if message.author.id == int(CEO_ID):
                 await message.reply("Status wurde auf: 'Streaming' geändert.")
                 return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
             else:
@@ -193,7 +193,7 @@ class MyClient(discord.Client):
         # -> Maintain-Mode
         if message.content.startswith('!state.maintain'):
             print(message.author.id)
-            if message.author.id == CEO_ID:
+            if message.author.id == int(CEO_ID):
                 if self.maintain_mode == False:
                     self.maintain_mode = True
                     await message.reply("\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren.")
@@ -205,7 +205,7 @@ class MyClient(discord.Client):
                 return await message.reply(E_MESSAGE)
         # -> stop maintainmode
         if message.content.startswith('!state.return'):
-            if message.author.id == CEO_ID:
+            if message.author.id == int(CEO_ID):
                 if self.maintain_mode == True:
                     self.maintain_mode = False
                     await message.reply("\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert.")
@@ -217,7 +217,7 @@ class MyClient(discord.Client):
                 return await message.reply(E_MESSAGE)
         # -> Todos
         if message.content.startswith('!todo.audio'):
-            if message.author.id == SAMU_ID or CEO_ID:
+            if message.author.id == int(SAMU_ID) or int(CEO_ID):
                 embed = EM(
                     title="_Audio TODO-Liste:_",
                     description = "\n"+
