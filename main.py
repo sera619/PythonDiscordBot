@@ -195,7 +195,7 @@ class MyClient(discord.Client):
             print(message.author.id)
             if message.author.id == CEO_ID:
                 if maintainmode == False:
-                    maintainmode(True)
+                    await maintainmode = True
                     await message.reply("\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren.")
                     await self.change_presence(status=discord.Status.do_not_disturb ,activity=discord.Activity(type=discord.ActivityType.competing, name="der Werkstatt"))
                     return await message.reply("\nSystem-Wartung vollständig initialisiert.")
@@ -207,7 +207,7 @@ class MyClient(discord.Client):
         if message.content.startswith('!state.return'):
             if message.author.id == CEO_ID:
                 if maintainmode == True:
-                    maintainmode(False)
+                    await maintainmode = False
                     await message.reply("\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert.")
                     await self.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="!commands"))
                     return await message.reply("\nAlle Systeme bereit.\nDanke für das Update")
