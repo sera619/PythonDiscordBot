@@ -13,6 +13,7 @@
 - [ ]   Musicbot
 - [x]   set custom status
 - [x]   chat moderation
+- [x]   interactive WebInterface
 
 >More features are planned for future.
 
