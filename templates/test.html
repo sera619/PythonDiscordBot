@@ -21,44 +21,77 @@
         <h1>Bot Kommandos</h1>
     <br />
     <br>
+    <h2>Memeber Befehle</h2>
     <table id="myTable" width="60%">          
         <tbody>
+            <tr>
+                <th scope="col">BEFEHL</th>
+                <th scope="col">AKTION</th>
+            </tr>
         <tr>
-        <td>Staus</td>
-        <td class="green-text">{{ bot_status }}</td>
+        <td>!hi</td>
+        <td class="green-text">DudeBot sagt dir Hallo</td>
         </tr>
     
         <tr>
-        <td>Bot-Name:</td>
-        <td class="green-text">{{ bot_name }}</td>
+        <td>!commands</td>
+        <td class="green-text">DudeBot zeigt eine Liste mit Befehlen</td>
         </tr>
 
         <tr>
-            <td>Bot-ID</td>
-            <td class="green-text">{{ bot_id }}</td>
+            <td>!homepage</td>
+            <td class="green-text">DudeBot erstellt einen Link zur Homepage</td>
         </tr>
 
         <tr>
-        <td>Server-Name:</td>
-        <td class="green-text">{{ server_name }}</td>
+        <td>!invite</td>
+        <td class="green-text">DudeBoT generiert einen Discord-Einladungslink</td>
         </tr>          
         
         <tr>
-            <td>Server-ID:</td>
-            <td class="green-text">{{ server_id }}</td>
+            <td>!status</td>
+            <td class="green-text">DudeBot zeigt den aktuellen Entwicklungsstatus des Spiels</td>
         </tr>
         <tr>
-            <td>Bot-Version:</td>
-            <td class="green-text">v0.2</td>
+            <td>!musik</td>
+            <td class="green-text">DudeBot zeigt dir die Befehlsliste für den Musik-Bot.</td>
         </tr>
-        
+
+        <tr>
+            <td>!emoji</td>
+            <td class="green-text">DudeBot zeigt dir eine Liste mit den Custom-Emojis</td>
+        </tr>
         </tbody>
     </table> 
-    
+    <br />
+    <br />
+    <h2>Administrator Befehle</h2>
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <th scope="col">BEFEHL</th>
+                <th scope="col">AKTION</th>
+            </tr>
+            <tr>
+                <td>!state.maintain</td>
+                <td>Setzt DudeBot in den Wartungsmodus</td>
+            </tr>
+            <tr>
+                <td>!state.return</td>
+                <td class="green-text">Re-aktiviert DudeBot aus dem Wartungsmodus</td>
+            </tr>
+            <tr>
+                <td>!todo.audio</td>
+                <td class="green-text">DudeBot zeigt die Audio-Todoliste</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
     <br />
     <div class="container">
         <a href="/"><button class="glow-on-hover" type="button">ZURÜCK</button></a>
-        <a href="github.com/sera619/PythonDiscordBot" target="_blank"><button class="glow-on-hover" type="button">HILFE</button></a>      
+        <a href="https://github.com/sera619/PythonDiscordBot" target="_blank"><button class="glow-on-hover" type="button">HILFE</button></a>      
     </div>
     <br>  
     <br />
