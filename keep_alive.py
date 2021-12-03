@@ -1,33 +1,58 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import  SubmitField, FormField
 from wtforms.validators import DataRequired
-
-from main import server_id, server_name, bot_id, bot_name, server_id
 from threading import Thread
+
+
+
 
 
 # simpler webserver zum aktiv halten des bots
 app = Flask('')
-Bootstrap(app)
 app.config['SECRET_KEY'] = 'KANI'
+Bootstrap(app)
 # Flask-Bootstrap need this
 
-user_id: str
+
+
+
 FARBEN = ['blau', 'rot', 'grün', 'gelb']
 
 
 # -> name Form
 class NameForm(FlaskForm):
-  name = StringField('Welche Farbe ist deine Lieblingsfarbe?',
-                     validators=[DataRequired()])
+    
   submit = SubmitField('Abschicken')
 
 
-@app.route('/')
+
+class InfoForm(FlaskForm):
+    panel = FormField()
+
+class NavItem(FlaskForm):
+    submit = SubmitField('Home')
+
+name_bot = ""
+name_server = "" 
+id_bot =""
+id_server =""
+bot_status =""
+
+@app.route('/', methods=('GET', 'POST'))
 def home():
-	return render_template('index.html', server_id=server_id, bot_id=bot_id, server_name=server_name)
+    return render_template('index.html')
+
+@app.route('/stats', methods=('GET','POST'))
+def stats():
+    return render_template('stats.html',server_name= name_server, server_id = id_server, bot_name = name_bot, bot_id = id_bot, bot_status=bot_status)
+
+
+@app.route('/commands', methods=('GET','POST'))
+def coms():
+    return render_template('test.html')
+
 
 def run():
     app.run(host='0.0.0.0', port=8080)

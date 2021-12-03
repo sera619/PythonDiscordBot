@@ -5,21 +5,11 @@ from discord.enums import Status
 from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM, EmptyEmbed
-from keep_alive import keep_alive as K
+import keep_alive
 
+E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 
-
-server_name="" 
-server_id ="" 
-bot_name ="" 
-bot_role = ""
-bot_id = ""
-
-
-
-E_MESSAGE= "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
-
-# -> Member ID´s 
+# -> Member ID´s
 SAMU_ID = os.environ['SAMU_ID']
 CEO_ID = os.environ['CEO_ID']
 # spiel versionsnummer
@@ -28,7 +18,7 @@ GAME_VERSION = "v0.0.1.0.1"
 INVITE_LINK = os.environ['INVITE_LINK']
 # discord token to connect with server
 TOKEN = os.environ['TOKEN']
-# server name 
+# server name
 SERVER_NAME = os.environ['DISCORD_SERVER']
 # reactionrole message id
 MES_ID = 914572418650107904
@@ -46,11 +36,9 @@ f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\
 f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
 
 
-
-
-
 class MyClient(discord.Client):
     maintain_mode: bool
+
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
@@ -69,23 +57,24 @@ class MyClient(discord.Client):
             if guild.name != SERVER_NAME:
                 # debugger : print({guild.name})
                 break
-            print("\n"+
-                f'#####################################\n'
-                f'#      Bot ist initialisiert:       #\n'
-                f'#***********************************#\n'
-                f'#   Bot User_ID: {self.user.id}     #\n'
-                f'#   Bot User_Name: {self.user}      #\n'
-                f'#   Bot Server name: {guild.name}   #\n'
-                f'#####################################\n')
-            global server_id
-            global server_name
-            global bot_name
-            global bot_id
-            bot_id = self.user.id
-            bot_name = self.user
-            server_name = guild.name
-            server_id = guild.id            
-            await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.listening, name="!commands"))
+            print("\n" + f'#####################################\n'
+                  f'#      Bot ist initialisiert:       #\n'
+                  f'#***********************************#\n'
+                  f'#   Bot User_ID: {self.user.id}     #\n'
+                  f'#   Bot User_Name: {self.user}      #\n'
+                  f'#   Bot Server name: {guild.name}   #\n'
+                  f'#####################################\n')
+            keep_alive.name_server = guild.name
+            keep_alive.id_server = str(guild.id)
+            keep_alive.id_bot = str(self.user.id)
+            keep_alive.name_bot = str(self.user)
+            keep_alive.bot_status = "Online"
+            keep_alive.keep_alive()
+            await self.change_presence(status=True,
+                                       activity=discord.Activity(
+                                           type=discord.ActivityType.listening,
+                                           name="!commands"))
+
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -97,88 +86,83 @@ class MyClient(discord.Client):
         if message.content.startswith('!commands'):
             embed = EM(
                 title="_Die Befehls-Liste für 'A Fox Tale'- Discord_",
-                description = "\n"+
-                            f'Eine Liste der Chat-Befehle die du verwenden kannst. \n'
-                            f'Gebe hierzu im Chat folgende Befehle ein:\n\n'
-                            f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
-                            f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
-                            f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
-                            f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
-                            f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels. \n'
-                            f'6: ```!musik```  - _FoxBot_ zeigt dir die Befehlsliste für den Musik-Bot. \n'
-                            f'7: ```!emoji``` - _FoxBot_ zeigt dir eine Liste mit den Custom-Emojis vom Server. \n'
+                description="\n" +
+                f'Eine Liste der Chat-Befehle die du verwenden kannst. \n'
+                f'Gebe hierzu im Chat folgende Befehle ein:\n\n'
+                f'1: ```!hi``` - _FoxBot_ sagt dir "Hallo". \n'
+                f'2: ```!commands``` - _FoxBot_ zeigt dir die ChatBefehl-Liste. \n'
+                f'3: ```!homepage``` - _FoxBot_ erstellt einen Link zur Spiel-Homepage. \n'
+                f'4: ```!invite``` - _FoxBot_ generiert einen Invite-Link für diesen Discord-Server. \n'
+                f'5: ```!status``` - Zeigt den aktuellen Entwicklungs-Status des Spiels. \n'
+                f'6: ```!musik```  - _FoxBot_ zeigt dir die Befehlsliste für den Musik-Bot. \n'
+                f'7: ```!emoji``` - _FoxBot_ zeigt dir eine Liste mit den Custom-Emojis vom Server. \n'
             )
-            embed.set_author(name = "")
-            embed.set_thumbnail(url= LOGO_URL)
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
             return await message.reply(embed=embed)
-        
+
         # -> !hi
         if message.content.startswith('!hi'):
-            return await message.reply(WELCOME_MESSAGE.format(user=message.author.name))
-                
+            return await message.reply(
+                WELCOME_MESSAGE.format(user=message.author.name))
+
         # -> !homepage
         if message.content.startswith('!homepage'):
             embed = EM(
                 title="_Die 'A Fox Tale' Homepage_",
-                description = "\n"+
-                             f"_Der Link zur offiziellen Homepage von 'A Fox Tale':_ \n"
-                             f'Link: *{HOMEPAGE_URL}*'
-            )
-            embed.set_author(name = "")
-            embed.set_thumbnail(url = LOGO_URL)
-            
-            return await message.reply(embed = embed)
-        
+                description="\n" +
+                f"_Der Link zur offiziellen Homepage von 'A Fox Tale':_ \n"
+                f'Link: *{HOMEPAGE_URL}*')
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
+
+            return await message.reply(embed=embed)
+
         # -> !invite
         if message.content.startswith('!invite'):
-            embed = EM(
-                title = '_"A Fox Tale" - Discord-Einladungslink_',
-                description = "\n"+
-                            f"_Der gewünschte Einladungslink:_ \n"
-                            f'{INVITE_LINK}'
-            )
-            embed.set_author(name = "")
-            embed.set_thumbnail(url = LOGO_URL)
-    
-            return await message.reply(embed = embed)
-        
+            embed = EM(title='_"A Fox Tale" - Discord-Einladungslink_',
+                       description="\n" +
+                       f"_Der gewünschte Einladungslink:_ \n"
+                       f'{INVITE_LINK}')
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
+
+            return await message.reply(embed=embed)
+
         # -> emojis
         if message.content.startswith('!emoji'):
             embed = EM(
-                title = "_'A Fox Tale' - Emoji-Liste_",
-                description = "\n"+
+                title="_'A Fox Tale' - Emoji-Liste_",
+                description="\n" +
                 f'Um die Custom-Emojis zu verwenden nutze folgende Codes: \n\n'
                 f'```:fox_red:``` - coloriertes GameLogo \n'
-                f'```:fox_white:``` - weißes GameLogo \n'
-            )
-            embed.set_author(name = "")
-            embed.set_thumbnail(url = LOGO_URL)
-            return await message.reply(embed = embed)
-        
+                f'```:fox_white:``` - weißes GameLogo \n')
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
+            return await message.reply(embed=embed)
+
         # -> !status
         if message.content.startswith('!status'):
             embed = EM(
-                title = '_"A Fox Tale" - Entwicklungsstatus_',
-                description = "\n"+
-                        f'Aktuell befinden wir uns in der internen Alpha-Testphase. \n'
-                        f'Derzeitige Version: \n\n'
-                        f'__{GAME_VERSION}__ \n\n'
-                        f'Eine erste spielbare Demo wird spätestens ab dem: \n\n'
-                        f'__31.12.2021__ \n\n'
-                        f'verfügbar sein. \n'
-                        f'Alle weiteren Informationen zum Spiel findest du unter:\n'
-                        f'*{HOMEPAGE_URL}*'
-            )
-            embed.set_author(name = "")
-            embed.set_thumbnail(url = LOGO_URL)
-    
-            return await message.reply(embed = embed)
+                title='_"A Fox Tale" - Entwicklungsstatus_',
+                description="\n" +
+                f'Aktuell befinden wir uns in der internen Alpha-Testphase. \n'
+                f'Derzeitige Version: \n\n'
+                f'__{GAME_VERSION}__ \n\n'
+                f'Eine erste spielbare Demo wird spätestens ab dem: \n\n'
+                f'__31.12.2021__ \n\n'
+                f'verfügbar sein. \n'
+                f'Alle weiteren Informationen zum Spiel findest du unter:\n'
+                f'*{HOMEPAGE_URL}*')
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
+
+            return await message.reply(embed=embed)
         # -> !musik
         if message.content.startswith('!musik'):
             embed = EM(
                 title='_Die Musik-Bot Befehls-Liste_',
-                description = "\n"+
-                f'Alle Musik-Bot Befehle. \n'
+                description="\n" + f'Alle Musik-Bot Befehle. \n'
                 f'Bitte beachte die folgenden Befehle nur im #musicspam Kanal zu verwenden. \n'
                 f'Vorsätzliche wiederholte Missachtung führt zu Konsequenzen. \n'
                 f'Beispiel: ```#play https://www.youtube.com/watch?v=Q0wbyQRRQJA``` \n\n'
@@ -193,30 +177,43 @@ class MyClient(discord.Client):
                 f'```#repeat```- Schaltet den Wiederholmodus ein/aus. \n'
                 f'```#seek```- Sucht einen bestimmten Punkt in der aktuellen Spur. \n'
                 f'```#24/7```- Schaltet den 24/7-Modus ein/aus, so dass der Bot den Sprachkanal nicht verlässt, bis du ihn stoppst. \n'
-                )
-            embed.set_author(name = "")
-            embed.set_thumbnail(url = LOGO_URL)
-    
-            return await message.reply(embed = embed)
+            )
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
+
+            return await message.reply(embed=embed)
         # -> admin commands
-        # -> stream state 
+        # -> stream state
         if message.content.startswith('!state.stream'):
             if message.author.id == int(CEO_ID):
                 await message.reply("Status wurde auf: 'Streaming' geändert.")
-                return await self.change_presence(status=True ,activity=discord.Activity(type=discord.ActivityType.watching, name="!commands")) 
+                return await self.change_presence(
+                    status=True,
+                    activity=discord.Activity(
+                        type=discord.ActivityType.watching, name="!commands"))
             else:
-                return await message.reply("\nDu gehörst nicht zum :fox_red: __Development-Team__ .\nNetter _Versuch!_ :smile:")
+                return await message.reply(
+                    "\nDu gehörst nicht zum :fox_red: __Development-Team__ .\nNetter _Versuch!_ :smile:"
+                )
         # -> Maintain-Mode
         if message.content.startswith('!state.maintain'):
             print(message.author.id)
             if message.author.id == int(CEO_ID):
                 if self.maintain_mode == False:
                     self.maintain_mode = True
-                    await message.reply("\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren.")
-                    await self.change_presence(status=discord.Status.do_not_disturb ,activity=discord.Activity(type=discord.ActivityType.competing, name="der Werkstatt"))
-                    return await message.reply("\nSystem-Wartung vollständig initialisiert.")
-                else: 
-                    return await message.reply("\n... ich befinde mich bereits im Wartungsmodus ...")
+                    await message.reply(
+                        "\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren."
+                    )
+                    await self.change_presence(
+                        status=discord.Status.do_not_disturb,
+                        activity=discord.Activity(
+                            type=discord.ActivityType.competing,
+                            name="der Werkstatt"))
+                    return await message.reply(
+                        "\nSystem-Wartung vollständig initialisiert.")
+                else:
+                    return await message.reply(
+                        "\n... ich befinde mich bereits im Wartungsmodus ...")
             else:
                 return await message.reply(E_MESSAGE)
         # -> stop maintainmode
@@ -224,11 +221,19 @@ class MyClient(discord.Client):
             if message.author.id == int(CEO_ID):
                 if self.maintain_mode == True:
                     self.maintain_mode = False
-                    await message.reply("\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert.")
-                    await self.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="!commands"))
-                    return await message.reply("\nAlle Systeme bereit.\nDanke für das Update")
+                    await message.reply(
+                        "\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert."
+                    )
+                    await self.change_presence(
+                        status=discord.Status.online,
+                        activity=discord.Activity(
+                            type=discord.ActivityType.playing,
+                            name="!commands"))
+                    return await message.reply(
+                        "\nAlle Systeme bereit.\nDanke für das Update")
                 else:
-                    return await message.reply("\nDazu müsste ich ersteinmal weg sein.")
+                    return await message.reply(
+                        "\nDazu müsste ich ersteinmal weg sein.")
             else:
                 return await message.reply(E_MESSAGE)
         # -> Todos
@@ -236,7 +241,7 @@ class MyClient(discord.Client):
             if message.author.id == int(SAMU_ID) or int(CEO_ID):
                 embed = EM(
                     title="_Audio TODO-Liste:_",
-                    description = "\n"+
+                    description="\n" +
                     f'Track für den Wald bzw. Feldebene - [ ] \n'
                     f'Combat Track: DK C3 boss blues quest abgeschlossen - [ ]\n'
                     f'menü selection sound; button klicks - [ ] \n'
@@ -246,21 +251,29 @@ class MyClient(discord.Client):
                     f'verließ sound - [x] \n'
                     f'sound zum reisen/fliegen/reiten: Secret of Mana OST Prophecy - [ ]\n'
                 )
-                embed.set_author(name ="")
-                embed.set_thumbnail(url = LOGO_URL)
-                return await message.reply(embed = embed)
+                embed.set_author(name="")
+                embed.set_thumbnail(url=LOGO_URL)
+                return await message.reply(embed=embed)
             else:
                 return await message.reply(E_MESSAGE)
-        
+        # -> Open webinterface
+        if message.content.startswith('!config'):
+            if message.author.id == int(CEO_ID):
+                return
+            else:
+                return await message.reply(E_MESSAGE)
+
     async def on_member_join(self, member):
         guild = member.guild
         if guild.system_channel is not None:
-            to_send = 'Willkommen {0.mention} to {1.name}!'.format(member, guild)
+            to_send = 'Willkommen {0.mention} to {1.name}!'.format(
+                member, guild)
             await guild.system_channel.send(to_send)
         dm_text = DM_MESSAGE
-        return await member.create_dm(message = dm_text)
-    
-    async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
+        return await member.create_dm(message=dm_text)
+
+    async def on_raw_reaction_add(self,
+                                  payload: discord.RawReactionActionEvent):
         '''vergibt eine Rolle anhand des emoji'''
         if payload.message_id != self.role_message_id:
             return
@@ -285,7 +298,8 @@ class MyClient(discord.Client):
         except discord.HTTPException:
             pass
 
-    async def on_raw_reaction_remove(self, payload: discord.RawReactionActionEvent):
+    async def on_raw_reaction_remove(self,
+                                     payload: discord.RawReactionActionEvent):
         '''Entfernt die Rolle anhand des Emoji´s'''
         if payload.message_id != self.role_message_id:
             return
@@ -314,10 +328,9 @@ class MyClient(discord.Client):
         except discord.HTTPException:
             pass
 
-    
 
 intents = discord.Intents.default()
 intents.members = True
-K()
+print(intents)
 client = MyClient()
 client.run(TOKEN)

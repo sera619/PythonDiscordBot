@@ -3,51 +3,43 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Python Discord-Bot</title>
+    <title>DUDE v0.1 - Discord-Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="javascript" href="{{ url_for('static', filename='js/script.js') }}">
 </head>
 
 
 <body>
-    <div class="block">    
-        <nav class="navbar">
-            <a class="navbar-item" href="#">HOME</a>
-        </nav>
-
-        <h1>
-            DUDE v0.1 - Discord-Bot © S3R43o3
-        </h1>
-        <table id="myTable" width="100%">          
-            <tbody>
-            <tr>
-             <td>Staus</td>
-             <td>{{Staus}}</td>
-            </tr>
-          
-            <tr>
-             <td>Botname:</td>
-             <td>{{bot_name}}</td>
-            </tr>
-                  
-            <tr>
-             <td>Server-Name:</td>
-             <td>{{server_name}}</td>
-            </tr>          
-            <tr>
-                <td>Server-ID:</td>
-                <td>{{server_id</td>
-            </tr>
-            <tr>
-                <td>
-                    s
-                </td>
-            </tr>
-            
-            
-            </tbody>
-          </table>
-    
-    
+    <div class="brand">  
+        <img id="pydis" class="image"  src="{{ url_for('static', filename='img/bot_logo.jpeg') }}">
+        <img class="image" src="{{ url_for('static', filename='img/logo_text.png') }}">
+    </div> 
+    </div> 
+    <br />
+    <br>
+    <br />   
+    <center>
+    <div class="container">
+        <h1>VERSION 0.3</h1>
+        <a href="/stats"><button class="glow-on-hover" type="button">HOME</button></a>
+        <a href="/commands"><button class="glow-on-hover" type="button">BEFEHLE</button></a>  
+        <a href="github.com/sera619/PythonDiscordBot" target="_blank"><button class="glow-on-hover" type="button">HILFE</button></a>      
     </div>
+    <br />
+    <br>
+    <br>  
+    <br />
+    <div class="copyright">
+ 
+    <script>
+        document.write('&copy;' );
+        document.write(' 2021 - ');
+        document.write(new Date().getFullYear());
+        document.write(' S3R43o3 - All Rights Reserved.');
+        document.write('<br/>Last Updated : ');
+        document.write(document.lastModified);
+    </script>
+    </div>
+    </center>
 </body>
-
 </html>

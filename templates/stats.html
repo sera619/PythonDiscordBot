@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DUDE|STATS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="javascript" src="{{ url_for('static', filename='script.js') }}">
+</head>
+
+
+<body>
+    <div class="brand">  
+        <img id="pydis" class="image"  src="{{ url_for('static', filename='img/bot_logo.jpeg') }}">
+        <img class="image" src="{{ url_for('static', filename='img/logo_text.png') }}">
+    </div>
+    <br />
+    <br />   
+    <center>
+        <h1>Bot Status</h1>
+    <table id="myTable" width="60%">          
+        <tbody>
+        <tr>
+        <td>Staus</td>
+        <td class="green-text">{{ bot_status }}</td>
+        </tr>
+    
+        <tr>
+        <td>Bot-Name:</td>
+        <td class="green-text">{{ bot_name }}</td>
+        </tr>
+
+        <tr>
+            <td>Bot-ID</td>
+            <td class="green-text">{{ bot_id }}</td>
+        </tr>
+
+        <tr>
+        <td>Server-Name:</td>
+        <td class="green-text">{{ server_name }}</td>
+        </tr>          
+        
+        <tr>
+            <td>Server-ID:</td>
+            <td class="green-text">{{ server_id }}</td>
+        </tr>
+        <tr>
+            <td>Bot-Version:</td>
+            <td class="green-text">v0.2</td>
+        </tr>
+        
+        </tbody>
+    </table> 
+    <br />
+    <br>
+    <div class="container">
+        <a href="/"><button class="glow-on-hover" type="button">ZURÜCK</button></a>
+        <a href="/commands"><button class="glow-on-hover" type="button">BEFEHLE</button></a>        
+        <a href="https://github.com/sera619/PythonDiscordBot"><button class="glow-on-hover" type="button">HILFE</button></a>
+    </div>
+    <br>  
+    <br />
+    <div class="copyright">
+ 
+    <script>
+        document.write('&copy;' );
+        document.write(' 2021 - ');
+        document.write(new Date().getFullYear());
+        document.write(' S3R43o3 - All Rights Reserved.');
+        document.write('<br/>Last Updated : ');
+        document.write(document.lastModified);
+    </script>
+    </div>
+    </center>
+</body>
+
+</html>
