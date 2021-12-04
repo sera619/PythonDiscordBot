@@ -68,13 +68,12 @@ class MyClient(discord.Client):
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = "Online"
+            keep_alive.bot_status = str(self.user.status)
             keep_alive.keep_alive()
             await self.change_presence(status=True,
                                        activity=discord.Activity(
                                            type=discord.ActivityType.listening,
                                            name="!commands"))
-
     async def on_message(self, message):
         if message.author == self.user:
             return
