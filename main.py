@@ -1,13 +1,17 @@
 import discord
 import os
+import time
 from discord import colour
 from discord.enums import Status
 from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM, EmptyEmbed
+from datetime import datetime
 import keep_alive
 
 E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
+SYSTEM_CHANNEL = 902288786250166283
+
 
 # -> Member ID´s
 SAMU_ID = os.environ['SAMU_ID']
@@ -74,6 +78,16 @@ class MyClient(discord.Client):
                                        activity=discord.Activity(
                                            type=discord.ActivityType.listening,
                                            name="!commands"))
+            embed = EM(
+                title="DUDEBOT Gestartet",
+                description="\n"+
+                f'___DUDEBOT___ wurde von:\n\n _S3R43o3_ \n\n'
+                f'Zeit: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'_ gestartet! \n\n\n'
+                f'___HALLO FREUNDE ! =)___'
+            )
+            embed.set_author(name="")
+            embed.set_thumbnail(url=LOGO_URL)
+            return await SYSTEM_CHANNEL.send_message(embed=embed)
     async def on_message(self, message):
         if message.author == self.user:
             return
