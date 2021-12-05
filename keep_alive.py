@@ -3,8 +3,9 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import  SubmitField, FormField
 from wtforms.validators import DataRequired
+from discord.embeds import Embed as EM
 from threading import Thread
-
+import main
 
 
 
@@ -53,11 +54,22 @@ def coms():
     return render_template('test.html')
 
 
-@app.route('/options/', methods=('GET','POST'))
+@app.route('/options')
 def options():
-    
     return render_template('options.html')
 
+@app.route('/options', methods=['POST'])
+def config_embed():
+    embed_title = request.form['embed-title']
+    embed_text = request.form['embed-text']
+    embed_author = request.form.getlist('embed-author')    
+    processed_text = embed_text
+    print(embed_author)
+    embed = EM(
+        title = processed_text,
+        description = embed_title
+    )    
+    return 
 
 
 
