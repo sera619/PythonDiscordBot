@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--SITE TITLE HERE-->
+    <title>DUDE|OPTIONEN</title>
+    <!--SITE TITLE END-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="javascript" src="{{ url_for('static', filename='script.js') }}">
+</head>
+
+
+<body>
+    <!--BRAND START-->
+    <div class="brand">  
+        <img id="pydis" class="image"  src="{{ url_for('static', filename='img/bot_logo.jpeg') }}">
+        <img class="image" src="{{ url_for('static', filename='img/logo_text.png') }}">
+    </div>
+    <br />
+    <br />   
+    <center>
+    <!--BRAND STOP-->
+        <h1>Bot Optionen</h1>
+    <br />
+
+    <div class="container">
+        <div class="bar bar-grey">
+          <div class="option">ONE</div>
+          <div class="option">TWO</div>
+          <div class="option">THREE</div>
+        </div>
+        <div class="bar-outer">
+          <div class="bar bar-purple">
+            <div class="option">ONE</div>
+            <div class="option">TWO</div>
+            <div class="option">THREE</div>
+          </div>
+        </div>
+      </div>
+    <br>
+
+        <!--CONTENT HERE-->
+
+
+    <!-- TEMPLATE FOOTER START-->
+    <br>
+    <br />
+    <div class="container">
+        <a href="/"><button class="glow-on-hover" type="button">HOME</button></a>
+        <a href="/stats"><button class="glow-on-hover" type="button">STATUS</button></a>
+        <a href="/commands"><button class glow-on-hover type="button" type="button">COMMANDS</button></a>      
+        <a href="https://github.com/sera619/PythonDiscordBot" target="_blank"><button class="glow-on-hover" type="button">HILFE</button></a>
+    </div>
+    <br>  
+    <br />
+    <div class="copyright"> 
+    <script>
+        document.write('&copy;' );
+        document.write(' 2021 - ');
+        document.write(new Date().getFullYear());
+        document.write(' S3R43o3 - All Rights Reserved.');
+        document.write('<br/>Last Updated : ');
+        document.write(document.lastModified);
+        const barOuter = document.querySelector(".bar-outer");
+        const options = document.querySelectorAll(".bar-grey .option");
+        let current = 1;
+        options.forEach((option, i) => (option.index = i + 1));
+        options.forEach(option =>
+                    option.addEventListener("click", function() {
+        barOuter.className = "bar-outer";
+        barOuter.classList.add(`pos${option.index}`);
+        if (option.index > current) {
+            barOuter.classList.add("right");
+        } 
+        else if (option.index < current) {
+            barOuter.classList.add("left");
+        }
+        current = option.index;
+}));
+    </script>
+    </div>
+    </center>
+    <!--TEMPLATE FOOTER END--> 
+</body>
+
+</html>

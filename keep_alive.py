@@ -23,8 +23,7 @@ FARBEN = ['blau', 'rot', 'grün', 'gelb']
 
 # -> name Form
 class NameForm(FlaskForm):
-    
-  submit = SubmitField('Abschicken')
+    submit = SubmitField('Abschicken')
 
 
 
@@ -52,6 +51,15 @@ def stats():
 @app.route('/commands', methods=('GET','POST'))
 def coms():
     return render_template('test.html')
+
+
+@app.route('/options/', methods=('GET','POST'))
+def options():
+    
+    return render_template('options.html')
+
+
+
 
 
 def run():

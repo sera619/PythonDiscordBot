@@ -72,7 +72,7 @@ class MyClient(discord.Client):
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = str(self.user.status)
+            keep_alive.bot_status = str(self.user.state)
             keep_alive.keep_alive()
             await self.change_presence(status=True,
                                        activity=discord.Activity(
@@ -81,9 +81,9 @@ class MyClient(discord.Client):
             embed = EM(
                 title="DUDEBOT Gestartet",
                 description="\n"+
-                f'___DUDEBOT___ wurde von:\n\n _S3R43o3_ \n\n'
+                f'__DUDEBOT__ wurde von:\n\n _S3R43o3_ \n\n'
                 f'Zeit: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'_ gestartet! \n\n\n'
-                f'___HALLO FREUNDE ! =)___'
+                f'__HALLO FREUNDE ! =)__'
             )
             embed.set_author(name="")
             embed.set_thumbnail(url=LOGO_URL)
@@ -267,12 +267,6 @@ class MyClient(discord.Client):
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
                 return await message.reply(embed=embed)
-            else:
-                return await message.reply(E_MESSAGE)
-        # -> Open webinterface
-        if message.content.startswith('!config'):
-            if message.author.id == int(CEO_ID):
-                return
             else:
                 return await message.reply(E_MESSAGE)
 
