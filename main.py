@@ -351,6 +351,8 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
+    async def post_embed():
+        if keep_alive.options
 
 
 intents = discord.Intents.default()

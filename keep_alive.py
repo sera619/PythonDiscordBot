@@ -41,6 +41,7 @@ id_bot =""
 id_server =""
 bot_status =""
 bot_version =""
+new_embed = None
 
 @app.route('/', methods=('GET', 'POST'))
 def home():
@@ -63,18 +64,19 @@ def options():
         if request.form['embed-submit'] == 'POSTEN':
             embed_title = request.form.get('embed-title')
             embed_text = request.form.get('embed-text') 
-            embed_author = request.form.get('embed-author')  
+            embed_author = request.form.get('embed-author')
+            embed_channel = request.form.get('embed-channel')
             
             print(embed_author)
             embed = EM(
                 title = embed_title,
                 description = embed_text
             )
-            embed.set_author("")
+            embed.set_author(name="")
             new_embed = embed  
             return new_embed
         else:
-            pass
+            return None
     elif request.method == 'GET':       
         return render_template('options.html')
 
