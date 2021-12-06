@@ -42,11 +42,12 @@ f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-
 
 class MyClient(discord.Client):
     maintain_mode: bool
-
+    debugging:bool
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.debugging = True
         # ID der Message der die Rectionrolefunktion hinzugefügt werden soll
         self.role_message_id = MES_ID
         self.emoji_to_role = {
@@ -71,27 +72,39 @@ class MyClient(discord.Client):
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = "Online"
+            keep_alive.bot_status = "Online"            
             keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
             channel = guild.get_channel(int(SYSTEM_CHANNEL))
-            await channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
-            time.sleep(5)
-            await self.change_presence(status=True,
-                                       activity=discord.Activity(
-                                           type=discord.ActivityType.listening,
-                                           name="!commands"))
-            embed = EM(
-                title="DUDEBOT Gestartet",
-                description="\n"+
-                f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
-                f':watch:\n\n _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
-                f'Keine Auffälligkeiten im System erkannt.\n'
-                f':christmas_tree:HoHoHo Ich glaub das Weihnachtet bald. :christmas_tree:'
-            )
-            embed.set_author(name="")
-            embed.set_thumbnail(url=LOGO_URL)
-            return await channel.send(embed=embed)
+            if self.debugging == True:
+                await channel.send(
+                f'\n:head_bandage:\n'
+                f'\n... __DEBUG-MODUS__ ...\n'
+                f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
+                )
+                await self.change_presence(
+                        status=discord.Status.idle,
+                        activity=discord.Activity(
+                            type=discord.ActivityType.competing,
+                            name="der Werkstatt"))
+            else:
+                await channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
+                time.sleep(5)
+                await self.change_presence(status=True,
+                                        activity=discord.Activity(
+                                            type=discord.ActivityType.listening,
+                                            name="!commands"))
+                embed = EM(
+                    title="DUDEBOT Gestartet",
+                    description="\n"+
+                    f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
+                    f':watch:\n\n _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
+                    f'Keine Auffälligkeiten im System erkannt.\n'
+                    f':christmas_tree:HoHoHo Ich glaub das Weihnachtet bald. :christmas_tree:'
+                )
+                embed.set_author(name="")
+                embed.set_thumbnail(url=LOGO_URL)
+                return await channel.send(embed=embed)
     async def on_message(self, message):
         if message.author == self.user:
             return
