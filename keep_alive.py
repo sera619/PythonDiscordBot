@@ -56,27 +56,27 @@ def coms():
     return render_template('test.html')
 
 
-@app.route('/options')
-def options():
-    return render_template('options.html')
-@app.route('/post-embed', methods=['POST'])
-def config_embed():
-    embed_title = request.form['embed-title']
-    embed_text = request.form['embed-text']
-    embed_author = request.form.getlist('embed-author')    
-    processed_text = embed_text
-    print(embed_author)
-    embed = EM(
-        title = processed_text,
-        description = embed_title
-    )
-    embed.set_author("")
 
-
-    new_embed = embed  
-    return new_embed
-
-
+@app.route('/options', methods=['POST','GET'])
+def options():  
+    if request.method == 'POST':
+        if request.form['embed-submit'] == 'POSTEN':
+            embed_title = request.form.get('embed-title')
+            embed_text = request.form.get('embed-text') 
+            embed_author = request.form.get('embed-author')  
+            
+            print(embed_author)
+            embed = EM(
+                title = embed_title,
+                description = embed_text
+            )
+            embed.set_author("")
+            new_embed = embed  
+            return new_embed
+        else:
+            pass
+    elif request.method == 'GET':       
+        return render_template('options.html')
 
 def run():
     app.run(host='0.0.0.0', port=8080)

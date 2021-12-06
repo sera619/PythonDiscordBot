@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--SITE TITLE HERE-->
-    <title>DUDE|OPTIONEN</title>
+    <title>DUDE | OPTIONEN</title>
     <!--SITE TITLE END-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="javascript" src="{{ url_for('static', filename='script.js') }}">
@@ -21,21 +21,25 @@
     <br />   
     <center>
     <!--BRAND STOP-->
-        <h1>Bot Optionen</h1>
+        <h1>OPTIONEN</h1>
     <br />
         <!-- CONTENT START -->
     <div class="container">
         <form method="post" >
-            <h3>Neuen Bot Post erstellen</h3>
-            <input type="text" placeholder="Hier Titel eingeben" name="embed-title" >
-            
-            <br />
-            <textarea cols="40" rows="4" placeholder="Hier Text eingeben" name="embed-text"></textarea>
-            <br />
-            <br>
-            <input type="checkbox" id="check-author" name="embed-author"><label for="check-author">Author anzeigen</label>
-            <br /><br>
-            <input value="POSTEN" type="submit">
+            <div class="container">
+                <h3>Neuen Bot Post erstellen</h3>
+                <!-- TextBOX-->
+                <div class="textbox">
+                <input type="text" placeholder="Hier Titel eingeben" name="embed-title" >    
+                <br />
+                <textarea cols="40" rows="4" placeholder="Hier Text eingeben" name="embed-text"></textarea>
+                <br />
+                <br>
+                <input type="checkbox" id="check-author" name="embed-author" unchecked><label for="check-author">Author anzeigen</label>
+                <br /><br>
+                <input value="POSTEN" type="submit" name="embed-submit">
+                </div>
+            </div>
         </form>
     </div>
     <br>
