@@ -3,12 +3,13 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import  SubmitField, FormField
 from wtforms.validators import DataRequired
+import discord
 from discord.embeds import Embed as EM
 from threading import Thread
-import main
 
 
 
+global new_embed
 
 # simpler webserver zum aktiv halten des bots
 app = Flask('')
@@ -39,10 +40,11 @@ name_server = ""
 id_bot =""
 id_server =""
 bot_status =""
+bot_version =""
 
 @app.route('/', methods=('GET', 'POST'))
 def home():
-    return render_template('index.html')
+    return render_template('index.html', bot_version=bot_version)
 
 @app.route('/stats', methods=('GET','POST'))
 def stats():
@@ -57,8 +59,7 @@ def coms():
 @app.route('/options')
 def options():
     return render_template('options.html')
-
-@app.route('/options', methods=['POST'])
+@app.route('/post-embed', methods=['POST'])
 def config_embed():
     embed_title = request.form['embed-title']
     embed_text = request.form['embed-text']
@@ -68,9 +69,12 @@ def config_embed():
     embed = EM(
         title = processed_text,
         description = embed_title
-    )    
-    return 
+    )
+    embed.set_author("")
 
+
+    new_embed = embed  
+    return new_embed
 
 
 

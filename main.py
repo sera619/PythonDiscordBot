@@ -12,7 +12,7 @@ import keep_alive
 E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 SYSTEM_CHANNEL = 902288786250166283
 
-
+BOT_VERSION = "v1.9"
 # -> Member ID´s
 SAMU_ID = os.environ['SAMU_ID']
 CEO_ID = os.environ['CEO_ID']
@@ -47,7 +47,6 @@ class MyClient(discord.Client):
     # initialize Client
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.maintain_mode = False
         # ID der Message der die Rectionrolefunktion hinzugefügt werden soll
         self.role_message_id = MES_ID
         self.emoji_to_role = {
@@ -72,8 +71,10 @@ class MyClient(discord.Client):
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = str(self.user.state)
+            keep_alive.bot_status = "Online"
+            keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
+            channel = guild.get_channel(int(SYSTEM_CHANNEL))
             await self.change_presence(status=True,
                                        activity=discord.Activity(
                                            type=discord.ActivityType.listening,
@@ -81,13 +82,14 @@ class MyClient(discord.Client):
             embed = EM(
                 title="DUDEBOT Gestartet",
                 description="\n"+
-                f'__DUDEBOT__ wurde von:\n\n _S3R43o3_ \n\n'
-                f'Zeit: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'_ gestartet! \n\n\n'
-                f'__HALLO FREUNDE ! =)__'
+                f'DUDEBOT wurde von:\n\n _S3R43o3_ \n\n'
+                f'um _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n_ gestartet! \n\n\n'
+                f'Keine Auffälligkeiten im System erkannt.\n'
+                f'HoHoHo Ich glaub das Weihnachtet bald.'
             )
             embed.set_author(name="")
             embed.set_thumbnail(url=LOGO_URL)
-            return await SYSTEM_CHANNEL.send_message(embed=embed)
+            return await channel.send(embed=embed)
     async def on_message(self, message):
         if message.author == self.user:
             return
