@@ -48,7 +48,7 @@ def home():
 
 @app.route('/stats', methods=('GET','POST'))
 def stats():
-    return render_template('stats.html',server_name= name_server, server_id = id_server, bot_name = name_bot, bot_id = id_bot, bot_status=bot_status)
+    return render_template('stats.html',server_name= name_server, server_id = id_server, bot_name = name_bot, bot_id = id_bot, bot_status=bot_status ,bot_version=bot_version)
 
 
 @app.route('/commands', methods=('GET','POST'))

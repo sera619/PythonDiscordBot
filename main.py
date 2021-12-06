@@ -75,6 +75,8 @@ class MyClient(discord.Client):
             keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
             channel = guild.get_channel(int(SYSTEM_CHANNEL))
+            await channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
+            time.sleep(5)
             await self.change_presence(status=True,
                                        activity=discord.Activity(
                                            type=discord.ActivityType.listening,
@@ -82,10 +84,10 @@ class MyClient(discord.Client):
             embed = EM(
                 title="DUDEBOT Gestartet",
                 description="\n"+
-                f'DUDEBOT wurde von:\n\n _S3R43o3_ \n\n'
-                f'um _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n_ gestartet! \n\n\n'
+                f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
+                f':watch:\n\n _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                 f'Keine Auffälligkeiten im System erkannt.\n'
-                f'HoHoHo Ich glaub das Weihnachtet bald.'
+                f':christmas_tree:HoHoHo Ich glaub das Weihnachtet bald. :christmas_tree:'
             )
             embed.set_author(name="")
             embed.set_thumbnail(url=LOGO_URL)
