@@ -7,7 +7,7 @@ from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM, EmptyEmbed
 from datetime import datetime
-from keep_alive import keep_alive
+import keep_alive
 
 E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 SYSTEM_CHANNEL = 902288786250166283
@@ -100,7 +100,7 @@ class MyClient(discord.Client):
                     title="DUDEBOT Gestartet",
                     description="\n"+
                     f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
-                    f':watch:\n\n _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
+                    f':watch: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                     f'Keine Auffälligkeiten im System erkannt.\n'
                     f':christmas_tree: :santa: HoHoHo Ich glaub das Weihnachtet bald. :santa: :christmas_tree:'
                 )
