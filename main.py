@@ -7,10 +7,11 @@ from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM, EmptyEmbed
 from datetime import datetime
-import keep_alive
+from keep_alive import keep_alive
 
 E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 SYSTEM_CHANNEL = 902288786250166283
+POST_CHANNEL = ""
 
 BOT_VERSION = "v1.9"
 # -> Member ID´s
@@ -43,11 +44,12 @@ f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-
 class MyClient(discord.Client):
     maintain_mode: bool
     debugging:bool
+    POST_CHANNEL = POST_CHANNEL
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.debugging = True
+        self.debugging = False
         # ID der Message der die Rectionrolefunktion hinzugefügt werden soll
         self.role_message_id = MES_ID
         self.emoji_to_role = {
@@ -100,11 +102,18 @@ class MyClient(discord.Client):
                     f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
                     f':watch:\n\n _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                     f'Keine Auffälligkeiten im System erkannt.\n'
-                    f':christmas_tree:HoHoHo Ich glaub das Weihnachtet bald. :christmas_tree:'
+                    f':christmas_tree: :santa: HoHoHo Ich glaub das Weihnachtet bald. :santa: :christmas_tree:'
                 )
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
                 return await channel.send(embed=embed)
+    async def post_embed():
+        if keep_alive.new_embed:
+            post_embed = EM(
+                title = str(keep_alive.options.embed_title),
+                description= str(keep_alive.options.embed_text)
+            )
+            return await POST_CHANNEL.send(embed=post_embed)
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -351,9 +360,6 @@ class MyClient(discord.Client):
             await member.remove_roles(role)
         except discord.HTTPException:
             pass
-    async def post_embed():
-        if keep_alive.options
-
 
 intents = discord.Intents.default()
 intents.members = True
