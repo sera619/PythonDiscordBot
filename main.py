@@ -139,7 +139,7 @@ class MyClient(discord.Client):
                                             name="!commands"))
                 embed = EM(
                     title="DUDEBOT",
-                    description="\n"+BRAND_BANNER+"\n"+
+                    description="\n"+BRAND_BANNER+\n"+
                     f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
                     f':watch: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                     f'Keine Auffälligkeiten im System erkannt.\n'
