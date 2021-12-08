@@ -104,9 +104,6 @@ class MyClient(discord.Client):
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             rulez_channel = guild.get_channel(int(RULEZ_CHANNEL))
 
-            # REGEL POST
-
-
             # Debugging Mode Message
             if self.debugging == True:
                 await self.change_presence(
@@ -139,6 +136,13 @@ class MyClient(discord.Client):
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
                 return await self.channel.send(embed=embed)
+    async def on_reaction_add(self, reaction, user):
+        welpe = discord.utils.get(user.guild.roles, name="Welpe")
+        rudel = discord.utils.get(user.guild.roles, name="Rudel")
+        if str(reaction.emoji) == ":white_check_mark:":
+            await user.add_roles(welpe)
+        elif str(reaction.emoji) == ":x:":
+            await user.add_roles(rudel)
 
     async def post_embed():
         if keep_alive.new_embed:
@@ -339,16 +343,12 @@ class MyClient(discord.Client):
         dm_text = DM_MESSAGE
         return await member.create_dm(message=dm_text)
 
-    async def on_reaction_add(self, reaction, user):
-        welpe = discord.utils.get(user.guild.roles, name="Welpe")
-        rudel = discord.utils.get(user.guild.roles, name="Rudel")
-        if str(reaction.emoji) == ":white_check_mark:":
-                return await user.add_roles(welpe)
-        elif str(reaction.emoji) == ":x:":
-                return await user.add_roles(rudel)
+
+    
         
-        
+
 client = MyClient()
+
 
 intents = discord.Intents.default()
 intents.members = True
