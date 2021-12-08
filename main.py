@@ -39,6 +39,19 @@ HOMEPAGE_URL = "https://sera619.github.io/FOX-TALE-Alpha/"
 DM_MESSAGE =f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
 f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\n\nSolltest du Fragen oder Probleme haben wende dich bitte an einen Administrator oder an den CEO.'
 f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
+BRAND_BANNER = (r'''
+      ___           ___           ___           ___           ___           ___                   
+     /  /\         /  /\         /  /\         /  /\         /  /\         /  /\          ___     
+    /  /::\       /  /:/        /  /::\       /  /::\       /  /::\       /  /::\        /__/\    
+   /  /:/\:\     /  /:/        /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/\:\       \  \:\   
+  /  /:/  \:\   /  /:/        /  /:/  \:\   /  /::\ \:\   /  /::\ \:\   /  /:/  \:\       \__\:\  
+ /__/:/ \__\:| /__/:/     /\ /__/:/ \__\:| /__/:/\:\ \:\ /__/:/\:\_\:| /__/:/ \__\:\      /  /::\ 
+ \  \:\ /  /:/ \  \:\    /:/ \  \:\ /  /:/ \  \:\ \:\_\/ \  \:\ \:\/:/ \  \:\ /  /:/     /  /:/\:\
+  \  \:\  /:/   \  \:\  /:/   \  \:\  /:/   \  \:\ \:\    \  \:\_\::/   \  \:\  /:/     /  /:/__\/
+   \  \:\/:/     \  \:\/:/     \  \:\/:/     \  \:\_\/     \  \:\/:/     \  \:\/:/     /__/:/     
+    \__\::/       \  \::/       \__\::/       \  \:\        \__\::/       \  \::/      \__\/      
+        ~~         \__\/            ~~         \__\/            ~~         \__\/                        
+''')
 
 RULE_EMBED = EM(
     title="'A Fox Tale'- DISCORD-REGELN",
@@ -112,7 +125,7 @@ class MyClient(discord.Client):
                             name="der Werkstatt",
                             status=discord.Status.idle))
                 await self.channel.send(
-                f'\n:head_bandage:\n'
+                f'\n:head_bandage:\n'+BRAND_BANNER+'\n'
                 f'\n... __DEBUG-MODUS__ ...\n'
                 f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
                 )
@@ -125,8 +138,8 @@ class MyClient(discord.Client):
                                             type=discord.ActivityType.listening,
                                             name="!commands"))
                 embed = EM(
-                    title="DUDEBOT Gestartet",
-                    description="\n"+
+                    title="DUDEBOT",
+                    description="\n"+BRAND_BANNER+"\n"+
                     f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
                     f':watch: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                     f'Keine Auffälligkeiten im System erkannt.\n'
