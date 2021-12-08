@@ -101,10 +101,12 @@ class MyClient(discord.Client):
             keep_alive.keep_alive()
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             rulez_channel = guild.get_channel(902436882904920074)
+
             # REGEL POST
-            RULE_EMBED.set_author("")
-            RULE_EMBED.set_thumbnail('/static/img/bot_logo.jpeg')
-            await rulez_channel.send(RULE_EMBED)            
+            RULE_EMBED.set_author(name="")
+            RULE_EMBED.set_thumbnail(url=LOGO_URL)
+            await rulez_channel.send(embed = self.rule_embed)
+
             # Debugging Mode Message
             if self.debugging == True:
                 await self.change_presence(
@@ -117,7 +119,8 @@ class MyClient(discord.Client):
                 f'\n... __DEBUG-MODUS__ ...\n'
                 f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
                 )
-            # Normal Welcome Message 
+
+            # Normal Welcome Message
             else:
                 await self.channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
                 time.sleep(5)
