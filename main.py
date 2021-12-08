@@ -1,14 +1,18 @@
 import discord
 import os
-import time
 import asyncio
 from discord import colour
 from discord.enums import Status
 from discord.utils import get as G
 from discord.ext import commands
 from discord.embeds import Embed as EM
-from datetime import datetime
+from datetime import datetime, date
 import keep_alive
+
+
+
+
+
 
 E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 SYSTEM_CHANNEL = 902288786250166283
@@ -73,7 +77,8 @@ class MyClient(discord.Client):
     # initialize Client
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.debugging = True
+        self.permission = 8
+        self.debugging = False
         self.wartung:bool
         self.role_message_id = MES_ID# ID der Message der die Rectionrolefunktion hinzugefügt werden soll
         self.emoji_to_role = {
@@ -96,21 +101,22 @@ class MyClient(discord.Client):
                   f'#####################################\n')
             keep_alive.name_server = guild.name
             self.guild_name = guild.name
+            keep_alive.count_member = "11"
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
             keep_alive.bot_version = str(BOT_VERSION)
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             rulez_channel = guild.get_channel(int(RULEZ_CHANNEL))
-            print(guild.members)
             # Debugging Mode Message
             if self.debugging == True:
+                keep_alive.bot_status = "MAINTAIN" 
                 await self.change_presence(
                         status=discord.Status.do_not_disturb,
                         activity=discord.Activity(
                         type=discord.ActivityType.competing,
                         name="der Werkstatt"))
-                await self.channel.send(
+                return await self.channel.send(
                 f'\n:head_bandage:\n'
                 f'\n... __DEBUG-MODUS__ ...\n'
                 f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
@@ -124,19 +130,24 @@ class MyClient(discord.Client):
                                         activity=discord.Activity(
                                             type=discord.ActivityType.listening,
                                             name="!commands"))
+                f_date = date(2021,12,24)
+                now = date.today()
+                delta_date = f_date - now 
                 embed = EM(
                     title="DUDEBOT",
                     description="\n"
-                    f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
+                    f'DUDEBOT wurde von:\n\n _S3R43o3_ \n\n'
                     f':watch: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                     f'Keine Auffälligkeiten im System erkannt.\n'
-                    f':christmas_tree: :santa: HoHoHo Ich glaub das Weihnachtet bald. :santa: :christmas_tree:'
+                    f':christmas_tree: :santa: HoHoHo Ich glaub das Weihnachtet bald. :santa: :christmas_tree:\n'
+                    f':santa: :watch: __Zeit bis Weihnachten: '+ str(delta_date)+ '___ :watch: :santa: \n'
                 )
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
-                return await self.channel.send(embed=embed)
-            keep_alive.bot_status = "Online / "+str(self.activity.name)             
-            keep_alive.keep_alive()
+                keep_alive.bot_status = "ONLINE"
+                await self.channel.send(embed=embed)
+            return keep_alive.keep_alive()
+
     async def post_embed():
         if keep_alive.new_embed:
             post_embed = EM(
@@ -329,6 +340,23 @@ class MyClient(discord.Client):
                 return await message.reply(embed=embed)
             else:
                 return await message.reply(E_MESSAGE)
+            
+        if message.content.startswith('!bot.post'):
+            if message.author.id == int(CEO_ID):
+                if keep_alive.text_title != "":
+                    em = EM(
+                        title="Test Embed",
+                        description = str(keep_alive.text_title)
+                    )
+                    em.set_author(name="")
+                    em.set_thumbnail(url=LOGO_URL)
+                    keep_alive.text_title = ""
+                    return await message.reply(embed = em)
+                else:
+                    return
+            else:
+                return await message.reply(E_MESSAGE)
+                     
 
     async def on_member_join(self, member):
         guild = member.guild
@@ -339,16 +367,11 @@ class MyClient(discord.Client):
         dm_text = DM_MESSAGE
         return await member.create_dm(message=dm_text)
 
-
-    
-        
-
-client = MyClient()
-
-
 intents = discord.Intents.default()
 intents.members = True
-print(intents)
+bot = commands.Bot(command_prefix="!", intents = intents) 
+
+client = MyClient()
 client.run(TOKEN)
     
     

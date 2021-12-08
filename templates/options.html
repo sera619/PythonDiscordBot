@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,11 +8,12 @@
     <title>DUDE | OPTIONEN</title>
     <!--SITE TITLE END-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="javascript" src="{{ url_for('static', filename='script.js') }}">
+    <link rel="javascript" src="{{ url_for('static', filename='js/script.js') }}">
 </head>
 
 
 <body>
+    {% block content %}
     <!--BRAND START-->
     <div class="brand">  
         <img id="pydis" class="image"  src="{{ url_for('static', filename='img/bot_logo.jpeg') }}">
@@ -25,24 +27,9 @@
     <br />
         <!-- CONTENT START -->
     <div class="container">
-        <form method="post" >
-            <div class="container">
-                <h3>Neuen Bot Post erstellen</h3>
-                <!-- TextBOX-->
-                <div class="textbox">
-                <input type="text" placeholder="Hier Titel eingeben" name="embed-title" >    
-                <br />
-                <textarea cols="40" rows="4" placeholder="Hier Text eingeben" name="embed-text"></textarea>
-                <br />
-                <br>
-                <input type="checkbox" id="check-author" name="embed-author" unchecked><label for="check-author">Author anzeigen</label>
-                <br /><br>
-                <input type="text" placeholder="CHANNEL-ID" name="embed-channel">
-                <br /><br />
-                <input value="POSTEN" class="glow-on-hover" type="submit" name="embed-submit">
-                </div>
-            </div>
-        </form>
+
+
+
     </div>
     <br>
 
@@ -60,7 +47,7 @@
     </div>
     <br>  
     <br />
-    <div class="copyright"> 
+    <div class="copyright">
     <script>
         document.write('&copy;' );
         document.write(' 2021 - ');
@@ -68,22 +55,6 @@
         document.write(' S3R43o3 - All Rights Reserved.');
         document.write('<br/>Last Updated : ');
         document.write(document.lastModified);
-        const barOuter = document.querySelector(".bar-outer");
-        const options = document.querySelectorAll(".bar-grey .option");
-        let current = 1;
-        options.forEach((option, i) => (option.index = i + 1));
-        options.forEach(option =>
-                    option.addEventListener("click", function() {
-        barOuter.className = "bar-outer";
-        barOuter.classList.add(`pos${option.index}`);
-        if (option.index > current) {
-            barOuter.classList.add("right");
-        } 
-        else if (option.index < current) {
-            barOuter.classList.add("left");
-        }
-        current = option.index;
-}));
     </script>
     </div>
     </center>
