@@ -98,14 +98,14 @@ class MyClient(discord.Client):
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = "Online /"+str(self.activity)             
+            keep_alive.bot_status = "Online / "+str(self.activity)             
             keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             rulez_channel = guild.get_channel(int(RULEZ_CHANNEL))
 
             # REGEL POST
-            if not guild.rulez_channel.get_message(918133986184802375):
+            if not rulez_channel.get_message(918133986184802375):
                 RULE_EMBED.set_author(name="")
                 RULE_EMBED.set_thumbnail(url=LOGO_URL)
                 await rulez_channel.send(embed = self.rule_embed)
@@ -346,7 +346,7 @@ class MyClient(discord.Client):
         welpe = discord.utils.get(user.guild.roles, name="Welpe")
         rudel = discord.utils.get(user.guild.roles, name="Rudel")
         self.rulez_channel = self.guild_name.get_channel(902436882904920074)
-        if reaction.message.channel.id == 902436882904920074: # <~~~ channel ID "rulez"
+        if reaction.message.channel.id == 902436882904920074: # <~~~ channel "rulez"
             if reaction.message.id == 902579822000230451: # <~~~~~ Message ID 
                 if str(reaction.emoji) == ":white_check_mark:":
                     return await user.add_roles(welpe)
@@ -360,6 +360,7 @@ class MyClient(discord.Client):
         
         
 client = MyClient()
+
 intents = discord.Intents.default()
 intents.members = True
 print(intents)
