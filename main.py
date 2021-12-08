@@ -105,9 +105,10 @@ class MyClient(discord.Client):
             rulez_channel = guild.get_channel(int(RULEZ_CHANNEL))
 
             # REGEL POST
-            RULE_EMBED.set_author(name="")
-            RULE_EMBED.set_thumbnail(url=LOGO_URL)
-            await rulez_channel.send(embed = self.rule_embed)
+            if not guild.rulez_channel.get_message(918133986184802375):
+                RULE_EMBED.set_author(name="")
+                RULE_EMBED.set_thumbnail(url=LOGO_URL)
+                await rulez_channel.send(embed = self.rule_embed)
 
             # Debugging Mode Message
             if self.debugging == True:
