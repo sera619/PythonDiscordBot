@@ -11,6 +11,7 @@ import keep_alive
 
 E_MESSAGE = "\nDu gehörst nicht zum  __Development-Team__ \n__Netter Versuch!__ :smile:"
 SYSTEM_CHANNEL = 902288786250166283
+RULEZ_CHANNEL = 902436882904920074
 POST_CHANNEL = ""
 
 BOT_VERSION = "v1.9"
@@ -66,6 +67,7 @@ class MyClient(discord.Client):
     guild_name = ""
     channel = ""
     rule_embed = RULE_EMBED
+    rulez_channel = ""
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
@@ -100,7 +102,7 @@ class MyClient(discord.Client):
             keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
-            rulez_channel = guild.get_channel(902436882904920074)
+            rulez_channel = guild.get_channel(int(RULEZ_CHANNEL))
 
             # REGEL POST
             RULE_EMBED.set_author(name="")
@@ -154,7 +156,7 @@ class MyClient(discord.Client):
         # message role change
         if message.content.startswith('!welpe'):
             role = G(message.guild.roles, name="Welpe")
-            return await self.add_roles(message.author, role)
+            return await message.author.add_roles(message.author, role)
         # -> !commands
         if message.content.startswith('!commands'):
             embed = EM(
@@ -329,6 +331,7 @@ class MyClient(discord.Client):
                 return await message.reply(embed=embed)
             else:
                 return await message.reply(E_MESSAGE)
+
     async def on_member_join(self, member):
         guild = member.guild
         if self.channel is not None:
@@ -341,16 +344,17 @@ class MyClient(discord.Client):
     async def on_reaction_add(self, reaction, user):
         welpe = discord.utils.get(user.guild.roles, name="Welpe")
         rudel = discord.utils.get(user.guild.roles, name="Rudel")
-        if reaction.message.channel.id == '902436882904920074': # <~~~ channel ID "rulez"
-            if reaction.message.id == '902579822000230451': # <~~~~~ Message ID 
+        self.rulez_channel = self.guild_name.get_channel(902436882904920074)
+        if reaction.message.channel.id == 902436882904920074: # <~~~ channel ID "rulez"
+            if reaction.message.id == 902579822000230451: # <~~~~~ Message ID 
                 if str(reaction.emoji) == ":white_check_mark:":
                     return await user.add_roles(welpe)
-                if str(reaction.emoji) == ":x:":
+                elif str(reaction.emoji) == ":x:":
                     return await user.add_roles(rudel)
             else:
-                return 
+                return print("ERROR: Reaktionrole: ID nicht gefunden!")
         else:
-            return
+            return print("ERROR: Reaktionrole: CHANNEL_ID nicht gefunden!")
 
         
         
