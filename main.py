@@ -5,7 +5,7 @@ from discord import colour
 from discord.enums import Status
 from discord.utils import get as G
 from discord.ext import commands
-from discord.embeds import Embed as EM, EmptyEmbed
+from discord.embeds import Embed as EM
 from datetime import datetime
 import keep_alive
 
