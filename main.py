@@ -1,5 +1,3 @@
-from flask import Flask, render_template, url_for, request
-
 import discord
 import os
 import time
@@ -46,6 +44,7 @@ f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-
 class MyClient(discord.Client):
     maintain_mode: bool
     debugging:bool
+    guild_name = ""
     channel = ""
     # Commando vars
     # initialize Client
@@ -73,24 +72,34 @@ class MyClient(discord.Client):
                   f'#   Bot Server name: {guild.name}   #\n'
                   f'#####################################\n')
             keep_alive.name_server = guild.name
+            self.guild_name = guild.name
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = "Online"            
+            keep_alive.bot_status = "Online /"+str(self.activity)             
             keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
+            rulez_channel = guild.get_channel(902436882904920074)
+            # REGEL POST
+            await rulez_channel.send(
+            
+            )
+
+            
+            # Debugging Mode Message
             if self.debugging == True:
-                await self.channel.send(
-                f'\n:head_bandage:\n'
-                f'\n... __DEBUG-MODUS__ ...\n'
-                f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
-                )
                 await self.change_presence(
                             activity=discord.Activity(
                             type=discord.ActivityType.competing,
                             name="der Werkstatt",
                             status=discord.Status.idle))
+                await self.channel.send(
+                f'\n:head_bandage:\n'
+                f'\n... __DEBUG-MODUS__ ...\n'
+                f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
+                )
+            # Normal Welcome Message 
             else:
                 await self.channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
                 time.sleep(5)
@@ -109,12 +118,12 @@ class MyClient(discord.Client):
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
                 return await self.channel.send(embed=embed)
-    @keep_alive.app.route('/options', methods=['GET', 'POST'])
+
     async def post_embed():
         if keep_alive.new_embed:
             post_embed = EM(
-                title = str(keep_alive.options.embed_title),
-                description= str(keep_alive.options.embed_text)
+                title = 'embed post test',
+                description= 'embed post test text if u read this text to the end u didnt understand what exactly test text mean =D'
             )
             return await POST_CHANNEL.send(embed=post_embed)
     
@@ -299,7 +308,6 @@ class MyClient(discord.Client):
                 return await message.reply(embed=embed)
             else:
                 return await message.reply(E_MESSAGE)
-
     async def on_member_join(self, member):
         guild = member.guild
         if self.channel is not None:
@@ -309,21 +317,26 @@ class MyClient(discord.Client):
         dm_text = DM_MESSAGE
         return await member.create_dm(message=dm_text)
 
-    async def on_reaction_add(self, reaction, user, message):
-        if message.id == 902579822000230451:
-            welpe = discord.utils.get(user.guild.roles, name="Welpe")
-            rudel = discord.utils.get(user.guild.roles, name="Rudel")
-            if str(reaction.emoji) == ":white_check_mark:":
-                await user.add_roles(welpe)
-            if str(reaction.emoji) == ":x:":
-                await user.add_roles(rudel)
+    async def on_reaction_add(self, reaction, user):
+        welpe = discord.utils.get(user.guild.roles, name="Welpe")
+        rudel = discord.utils.get(user.guild.roles, name="Rudel")
+        if reaction.message.channel.id == '902436882904920074': # <~~~ channel ID "rulez"
+            if reaction.message.id == '902579822000230451': # <~~~~~ Message ID 
+                if str(reaction.emoji) == ":white_check_mark:":
+                    return await user.add_roles(welpe)
+                if str(reaction.emoji) == ":x:":
+                    return await user.add_roles(rudel)
+            else:
+                return 
+        else:
+            return
+
         
         
-    
-    
-    
+client = MyClient()
 intents = discord.Intents.default()
 intents.members = True
 print(intents)
-client = MyClient()
 client.run(TOKEN)
+    
+    
