@@ -1,3 +1,5 @@
+from flask import Flask, render_template, url_for, request
+
 import discord
 import os
 import time
@@ -107,6 +109,7 @@ class MyClient(discord.Client):
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
                 return await self.channel.send(embed=embed)
+    @keep_alive.app.route('/options', methods=['GET', 'POST'])
     async def post_embed():
         if keep_alive.new_embed:
             post_embed = EM(
@@ -114,6 +117,7 @@ class MyClient(discord.Client):
                 description= str(keep_alive.options.embed_text)
             )
             return await POST_CHANNEL.send(embed=post_embed)
+    
     async def on_message(self, message):
         if message.author == self.user:
             return
@@ -298,21 +302,22 @@ class MyClient(discord.Client):
 
     async def on_member_join(self, member):
         guild = member.guild
-        if guild.system_channel is not None:
+        if self.channel is not None:
             to_send = 'Willkommen {0.mention} to {1.name}!'.format(
                 member, guild)
-            await guild.system_channel.send(to_send)
+            await self.channel.send(to_send)
         dm_text = DM_MESSAGE
         return await member.create_dm(message=dm_text)
 
-    async def on_reaction_add(self, reaction, user):
-        welpe = discord.utils.get(user.guild.roles, name="Welpe")
-        rudel = discord.utils.get(user.guild.roles, name="Rudel")
-        if str(reaction.emoji) == ":white_check_mark:":
-            await user.add_roles(welpe)
-        if str(reaction.emoji) == ":x:":
-            await user.add_roles(rudel)
-    
+    async def on_reaction_add(self, reaction, user, message):
+        if message.id == 902579822000230451:
+            welpe = discord.utils.get(user.guild.roles, name="Welpe")
+            rudel = discord.utils.get(user.guild.roles, name="Rudel")
+            if str(reaction.emoji) == ":white_check_mark:":
+                await user.add_roles(welpe)
+            if str(reaction.emoji) == ":x:":
+                await user.add_roles(rudel)
+        
         
     
     

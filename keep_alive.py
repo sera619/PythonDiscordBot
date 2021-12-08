@@ -3,8 +3,6 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import  SubmitField, FormField
 from wtforms.validators import DataRequired
-import discord
-from discord.embeds import Embed as EM
 from threading import Thread
 
 # simpler webserver zum aktiv halten des bots
