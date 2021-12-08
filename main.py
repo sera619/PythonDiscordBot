@@ -87,10 +87,10 @@ class MyClient(discord.Client):
                 f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
                 )
                 await self.change_presence(
-                        status=discord.Status.idle,
-                        activity=discord.Activity(
+                            activity=discord.Activity(
                             type=discord.ActivityType.competing,
-                            name="der Werkstatt"))
+                            name="der Werkstatt",
+                            status=discord.Status.idle))
             else:
                 await self.channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
                 time.sleep(5)
