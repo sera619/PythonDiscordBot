@@ -44,12 +44,12 @@ f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-
 class MyClient(discord.Client):
     maintain_mode: bool
     debugging:bool
-    POST_CHANNEL = POST_CHANNEL
+    channel = ""
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.debugging = False
+        self.debugging = True
         # ID der Message der die Rectionrolefunktion hinzugefügt werden soll
         self.role_message_id = MES_ID
         self.emoji_to_role = {
@@ -77,9 +77,9 @@ class MyClient(discord.Client):
             keep_alive.bot_status = "Online"            
             keep_alive.bot_version = str(BOT_VERSION)
             keep_alive.keep_alive()
-            channel = guild.get_channel(int(SYSTEM_CHANNEL))
+            self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             if self.debugging == True:
-                await channel.send(
+                await self.channel.send(
                 f'\n:head_bandage:\n'
                 f'\n... __DEBUG-MODUS__ ...\n'
                 f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
@@ -90,7 +90,7 @@ class MyClient(discord.Client):
                             type=discord.ActivityType.competing,
                             name="der Werkstatt"))
             else:
-                await channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
+                await self.channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
                 time.sleep(5)
                 await self.change_presence(status=True,
                                         activity=discord.Activity(
@@ -106,7 +106,7 @@ class MyClient(discord.Client):
                 )
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
-                return await channel.send(embed=embed)
+                return await self.channel.send(embed=embed)
     async def post_embed():
         if keep_alive.new_embed:
             post_embed = EM(
@@ -305,62 +305,18 @@ class MyClient(discord.Client):
         dm_text = DM_MESSAGE
         return await member.create_dm(message=dm_text)
 
-    async def on_raw_reaction_add(self,
-                                  payload: discord.RawReactionActionEvent):
-        '''vergibt eine Rolle anhand des emoji'''
-        if payload.message_id != self.role_message_id:
-            return
-
-        guild = self.get_guild(payload.guild_id)
-        if guild is None:
-            return
-
-        try:
-            role_id = self.emoji_to_role[payload.emoji]
-        except KeyError:
-            # wenn das emoji nicht eines von der liste ist -> exit
-            return
-
-        role = guild.get_role(role_id)
-        if role is None:
-            # geht sicher das rolle existiert und valide ist
-            return
-
-        try:
-            await payload.member.add_roles(role)
-        except discord.HTTPException:
-            pass
-
-    async def on_raw_reaction_remove(self,
-                                     payload: discord.RawReactionActionEvent):
-        '''Entfernt die Rolle anhand des Emoji´s'''
-        if payload.message_id != self.role_message_id:
-            return
-
-        guild = self.get_guild(payload.guild_id)
-        if guild is None:
-            return
-
-        try:
-            role_id = self.emoji_to_role[payload.emoji]
-        except KeyError:
-            return
-
-        role = guild.get_role(role_id)
-        if role is None:
-            return
-
-        # payload für on_raw_reaction_remove enthält 'member' nicht
-        # generiere über 'user_id'
-        member = guild.get_member(payload.user_id)
-        if member is None:
-            return
-
-        try:
-            await member.remove_roles(role)
-        except discord.HTTPException:
-            pass
-
+    async def on_reaction_add(self, reaction, user):
+        welpe = discord.utils.get(user.guild.roles, name="Welpe")
+        rudel = discord.utils.get(user.guild.roles, name="Rudel")
+        if str(reaction.emoji) == ":white_check_mark:":
+            await user.add_roles(welpe)
+        if str(reaction.emoji) == ":x:":
+            await user.add_roles(rudel)
+    
+        
+    
+    
+    
 intents = discord.Intents.default()
 intents.members = True
 print(intents)

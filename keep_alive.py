@@ -7,20 +7,15 @@ import discord
 from discord.embeds import Embed as EM
 from threading import Thread
 
-
-
-global new_embed
-
 # simpler webserver zum aktiv halten des bots
+
+
+
+
 app = Flask('')
 app.config['SECRET_KEY'] = 'KANI'
-Bootstrap(app)
 # Flask-Bootstrap need this
-
-
-
-
-FARBEN = ['blau', 'rot', 'grün', 'gelb']
+Bootstrap(app)
 
 
 # -> name Form
