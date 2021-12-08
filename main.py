@@ -1,6 +1,7 @@
 import discord
 import os
 import time
+import asyncio
 from discord import colour
 from discord.enums import Status
 from discord.utils import get as G
@@ -73,8 +74,8 @@ class MyClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.debugging = True
-        # ID der Message der die Rectionrolefunktion hinzugefügt werden soll
-        self.role_message_id = MES_ID
+        self.wartung:bool
+        self.role_message_id = MES_ID# ID der Message der die Rectionrolefunktion hinzugefügt werden soll
         self.emoji_to_role = {
             discord.PartialEmoji(name='🔴'): 0,
             discord.PartialEmoji(name='🟡'): 0,
@@ -98,19 +99,17 @@ class MyClient(discord.Client):
             keep_alive.id_server = str(guild.id)
             keep_alive.id_bot = str(self.user.id)
             keep_alive.name_bot = str(self.user)
-            keep_alive.bot_status = "Online / "+str(self.activity)             
             keep_alive.bot_version = str(BOT_VERSION)
-            keep_alive.keep_alive()
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             rulez_channel = guild.get_channel(int(RULEZ_CHANNEL))
-
+            print(guild.members)
             # Debugging Mode Message
             if self.debugging == True:
                 await self.change_presence(
-                            activity=discord.Activity(
-                            type=discord.ActivityType.competing,
-                            name="der Werkstatt",
-                            status=discord.Status.idle))
+                        status=discord.Status.do_not_disturb,
+                        activity=discord.Activity(
+                        type=discord.ActivityType.competing,
+                        name="der Werkstatt"))
                 await self.channel.send(
                 f'\n:head_bandage:\n'
                 f'\n... __DEBUG-MODUS__ ...\n'
@@ -120,7 +119,7 @@ class MyClient(discord.Client):
             # Normal Welcome Message
             else:
                 await self.channel.send("\nBootsequenz wurde initialisiert...\n... Starte Systeme...")
-                time.sleep(5)
+                await asyncio.sleep(5)
                 await self.change_presence(status=True,
                                         activity=discord.Activity(
                                             type=discord.ActivityType.listening,
@@ -136,14 +135,8 @@ class MyClient(discord.Client):
                 embed.set_author(name="")
                 embed.set_thumbnail(url=LOGO_URL)
                 return await self.channel.send(embed=embed)
-    async def on_reaction_add(self, reaction, user):
-        welpe = discord.utils.get(user.guild.roles, name="Welpe")
-        rudel = discord.utils.get(user.guild.roles, name="Rudel")
-        if str(reaction.emoji) == ":white_check_mark:":
-            await user.add_roles(welpe)
-        elif str(reaction.emoji) == ":x:":
-            await user.add_roles(rudel)
-
+            keep_alive.bot_status = "Online / "+str(self.activity.name)             
+            keep_alive.keep_alive()
     async def post_embed():
         if keep_alive.new_embed:
             post_embed = EM(
@@ -274,18 +267,20 @@ class MyClient(discord.Client):
                 )
         # -> Maintain-Mode
         if message.content.startswith('!state.maintain'):
+            print(str(message.id))
             print(message.author.id)
             if message.author.id == int(CEO_ID):
-                if self.maintain_mode == False:
-                    self.maintain_mode = True
+                if self.debugging == False:
+                    self.debugging = True
                     await message.reply(
-                        "\nSystem-Wartung wird initialisiert...\nSysteme werden heruntergefahren."
+                        "\n\nSystem-Wartung wird initialisiert...\n\nSysteme werden heruntergefahren."
                     )
                     await self.change_presence(
                         status=discord.Status.do_not_disturb,
                         activity=discord.Activity(
                             type=discord.ActivityType.competing,
                             name="der Werkstatt"))
+                    await asyncio.sleep(4)
                     return await message.reply(
                         "\nSystem-Wartung vollständig initialisiert.")
                 else:
@@ -296,8 +291,8 @@ class MyClient(discord.Client):
         # -> stop maintainmode
         if message.content.startswith('!state.return'):
             if message.author.id == int(CEO_ID):
-                if self.maintain_mode == True:
-                    self.maintain_mode = False
+                if self.debugging == True:
+                    self.debugging = False
                     await message.reply(
                         "\n... System-Wartung abgeschlossen.\nSysteme werden reaktiviert."
                     )
@@ -306,6 +301,7 @@ class MyClient(discord.Client):
                         activity=discord.Activity(
                             type=discord.ActivityType.playing,
                             name="!commands"))
+                    await asyncio.sleep(4)
                     return await message.reply(
                         "\nAlle Systeme bereit.\nDanke für das Update")
                 else:
