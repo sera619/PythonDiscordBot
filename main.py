@@ -36,9 +36,28 @@ LOGO_URL = "https://github.com/sera619/FOX-TALE-Alpha/blob/master/assets/img/ico
 # homepage url
 HOMEPAGE_URL = "https://sera619.github.io/FOX-TALE-Alpha/"
 # DM welcome message
-DM_MESSAGE = f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
+DM_MESSAGE =f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
 f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\n\nSolltest du Fragen oder Probleme haben wende dich bitte an einen Administrator oder an den CEO.'
 f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
+
+RULE_EMBED = EM(
+    title="'A Fox Tale'- DISCORD-REGELN",
+    description='Hallo schön dich hier zu sehen!\nUm ein friedliches Miteinander zu gewährleisten akzeptiere bitte folgende Regeln.\n'
+    f'___Bei Verstoß dieser Regeln ist mit einem temporären Ban bis zum völligen Ausschluss alles möglich!___\n'
+    f'1. Ein freundlicher und respektvoller Umgang ist jederzeit Pflicht!\n'
+    f'2. Rassismus, Hatespeech, Sexsismus oder andere Abarten werden ohne Ankündigung und ohne Chance auf wideruf gebannt.\n'
+    f'2. Den Anweisungen von Administratoren (CeO-> Administrator-> Moderator) ist stets Folge zu leisten. \n'
+    f'3. Fremdwerbung ist ist verboten. \n'
+    f'4. Das grundlose taggen / pingen / markieren von Nutzern & Benutzerrängen ist untersagt. \n'
+    f'5. Keine unpassenden Profile (Nutzernamen, Avatare, Accounts und Status). Dazu zählen unter Anderem leere Nutzenamen, ungewöhnliche Unicode Zeichen oder übermäßig lange Nutzernamen. \n'
+    f'6. Das Teilen von personenbezogenen Daten ist verboten. \n'
+    f'7. NSFW-Inhalte (pornografie etc.) sind in allen Channeln verboten. \n'
+    f'8. Spammen ist verboten. \n'
+    f'9. Trolling ist verboten. \n'
+    f'10. Halte dich an die Channel Themen und halte Konversationen in den passenden Channeln. \n'
+    f'11. Administratoren haben das letzte Wort. \n'
+    f'12. Der CEO das allerletzte!')
+
 
 
 class MyClient(discord.Client):
@@ -82,11 +101,9 @@ class MyClient(discord.Client):
             self.channel = guild.get_channel(int(SYSTEM_CHANNEL))
             rulez_channel = guild.get_channel(902436882904920074)
             # REGEL POST
-            await rulez_channel.send(
-            
-            )
-
-            
+            RULE_EMBED.set_author("")
+            RULE_EMBED.set_thumbnail('/static/img/bot_logo.jpeg')
+            await rulez_channel.send(RULE_EMBED)            
             # Debugging Mode Message
             if self.debugging == True:
                 await self.change_presence(
