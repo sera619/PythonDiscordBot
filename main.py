@@ -39,36 +39,23 @@ HOMEPAGE_URL = "https://sera619.github.io/FOX-TALE-Alpha/"
 DM_MESSAGE =f'\nWillkommen auf dem Discord von "A Fox Tale".\nSchön dich hier zu sehen. Um einen Reibungslosen Umgang zu gewährleisten,'
 f'\nakzeptiere bitte die Regeln im #rulez Channel.\nHalte dich an diese Regeln!\n\nSolltest du Fragen oder Probleme haben wende dich bitte an einen Administrator oder an den CEO.'
 f'\nDas Team von "A Fox Tale" wünscht dir viel Spaß\nLiebe grüße, __Das Dev-Team__!'
-BRAND_BANNER = (r'''
-      ___           ___           ___           ___           ___           ___                   
-     /  /\         /  /\         /  /\         /  /\         /  /\         /  /\          ___     
-    /  /::\       /  /:/        /  /::\       /  /::\       /  /::\       /  /::\        /__/\    
-   /  /:/\:\     /  /:/        /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/\:\       \  \:\   
-  /  /:/  \:\   /  /:/        /  /:/  \:\   /  /::\ \:\   /  /::\ \:\   /  /:/  \:\       \__\:\  
- /__/:/ \__\:| /__/:/     /\ /__/:/ \__\:| /__/:/\:\ \:\ /__/:/\:\_\:| /__/:/ \__\:\      /  /::\ 
- \  \:\ /  /:/ \  \:\    /:/ \  \:\ /  /:/ \  \:\ \:\_\/ \  \:\ \:\/:/ \  \:\ /  /:/     /  /:/\:\
-  \  \:\  /:/   \  \:\  /:/   \  \:\  /:/   \  \:\ \:\    \  \:\_\::/   \  \:\  /:/     /  /:/__\/
-   \  \:\/:/     \  \:\/:/     \  \:\/:/     \  \:\_\/     \  \:\/:/     \  \:\/:/     /__/:/     
-    \__\::/       \  \::/       \__\::/       \  \:\        \__\::/       \  \::/      \__\/      
-        ~~         \__\/            ~~         \__\/            ~~         \__\/                        
-''')
 
 RULE_EMBED = EM(
-    title="'A Fox Tale'- DISCORD-REGELN",
-    description='Hallo schön dich hier zu sehen!\nUm ein friedliches Miteinander zu gewährleisten akzeptiere bitte folgende Regeln.\n'
-    f'___Bei Verstoß dieser Regeln ist mit einem temporären Ban bis zum völligen Ausschluss alles möglich!___\n'
-    f'1. Ein freundlicher und respektvoller Umgang ist jederzeit Pflicht!\n'
-    f'2. Rassismus, Hatespeech, Sexsismus oder andere Abarten werden ohne Ankündigung und ohne Chance auf wideruf gebannt.\n'
-    f'2. Den Anweisungen von Administratoren (CeO-> Administrator-> Moderator) ist stets Folge zu leisten. \n'
-    f'3. Fremdwerbung ist ist verboten. \n'
-    f'4. Das grundlose taggen / pingen / markieren von Nutzern & Benutzerrängen ist untersagt. \n'
-    f'5. Keine unpassenden Profile (Nutzernamen, Avatare, Accounts und Status). Dazu zählen unter Anderem leere Nutzenamen, ungewöhnliche Unicode Zeichen oder übermäßig lange Nutzernamen. \n'
-    f'6. Das Teilen von personenbezogenen Daten ist verboten. \n'
-    f'7. NSFW-Inhalte (pornografie etc.) sind in allen Channeln verboten. \n'
-    f'8. Spammen ist verboten. \n'
-    f'9. Trolling ist verboten. \n'
-    f'10. Halte dich an die Channel Themen und halte Konversationen in den passenden Channeln. \n'
-    f'11. Administratoren haben das letzte Wort. \n'
+    title="_'A Fox Tale'- DISCORD-REGELN_",
+    description='_Hallo schön dich hier zu sehen!Um ein friedliches Miteinander zu gewährleisten akzeptiere bitte folgende Regeln._\n\n'
+    f'___Bei Verstoß dieser Regeln ist mit einem temporären Ban bis zum völligen Ausschluss alles möglich!___\n\n'
+    f'1. Ein freundlicher und respektvoller Umgang ist jederzeit Pflicht!\n\n'
+    f'2. Rassismus, Hatespeech, Sexsismus oder andere Abarten werden ohne Ankündigung und ohne Chance auf wideruf gebannt.\n\n'
+    f'2. Den Anweisungen von Administratoren (CeO-> Administrator-> Moderator) ist stets Folge zu leisten. \n\n'
+    f'3. Fremdwerbung ist ist verboten. \n\n'
+    f'4. Das grundlose taggen / pingen / markieren von Nutzern & Benutzerrängen ist untersagt. \n\n'
+    f'5. Keine unpassenden Profile (Nutzernamen, Avatare, Accounts und Status). Dazu zählen unter Anderem leere Nutzenamen, ungewöhnliche Unicode Zeichen oder übermäßig lange Nutzernamen. \n\n'
+    f'6. Das Teilen von personenbezogenen Daten ist verboten. \n\n'
+    f'7. NSFW-Inhalte (pornografie etc.) sind in allen Channeln verboten. \n\n'
+    f'8. Spammen ist verboten. \n\n'
+    f'9. Trolling ist verboten. \n\n'
+    f'10. Halte dich an die Channel Themen und halte Konversationen in den passenden Channeln. \n\n'
+    f'11. Administratoren haben das letzte Wort. \n\n'
     f'12. Der CEO das allerletzte!')
 
 
@@ -78,6 +65,7 @@ class MyClient(discord.Client):
     debugging:bool
     guild_name = ""
     channel = ""
+    rule_embed = RULE_EMBED
     # Commando vars
     # initialize Client
     def __init__(self, *args, **kwargs):
@@ -125,7 +113,7 @@ class MyClient(discord.Client):
                             name="der Werkstatt",
                             status=discord.Status.idle))
                 await self.channel.send(
-                f'\n:head_bandage:\n'+BRAND_BANNER+'\n'
+                f'\n:head_bandage:\n'
                 f'\n... __DEBUG-MODUS__ ...\n'
                 f'\n... :pray: SORRY FÜR DEN SPAM :pray: ...\n'
                 )
@@ -139,7 +127,8 @@ class MyClient(discord.Client):
                                             name="!commands"))
                 embed = EM(
                     title="DUDEBOT",
-                    description="\n"+BRAND_BANNER+\n"+                    f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
+                    description="\n"
+                    f'DUDEBOT wurde __von__:\n\n _S3R43o3_ \n\n'
                     f':watch: _'+str(datetime.today().strftime("%Y-%m-%d %H:%M:%S"))+'\n\n_ gestartet! \n\n'
                     f'Keine Auffälligkeiten im System erkannt.\n'
                     f':christmas_tree: :santa: HoHoHo Ich glaub das Weihnachtet bald. :santa: :christmas_tree:'
