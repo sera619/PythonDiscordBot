@@ -346,8 +346,8 @@ class MyClient(discord.Client):
         welpe = discord.utils.get(user.guild.roles, name="Welpe")
         rudel = discord.utils.get(user.guild.roles, name="Rudel")
         self.rulez_channel = self.guild_name.get_channel(902436882904920074)
-        if reaction.message.channel.id == 902436882904920074: # <~~~ channel ID "rulez"
-            if reaction.message.id == 902579822000230451: # <~~~~~ Message ID 
+        if reaction.message.channel.id == self.rulez_channel: # <~~~ channel ID "rulez"
+            if reaction.message.id == 918133986184802375: # <~~~~~ Message ID 
                 if str(reaction.emoji) == ":white_check_mark:":
                     return await user.add_roles(welpe)
                 elif str(reaction.emoji) == ":x:":
