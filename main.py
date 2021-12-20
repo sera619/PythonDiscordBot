@@ -146,7 +146,7 @@ class MyClient(discord.Client):
                 embed.set_thumbnail(url=LOGO_URL)
                 keep_alive.bot_status = "ONLINE"
                 await self.channel.send(embed=embed)
-            return keep_alive.keep_alive()
+            keep_alive.keep_alive()
 
     async def post_embed():
         if keep_alive.new_embed:
@@ -340,24 +340,14 @@ class MyClient(discord.Client):
                 return await message.reply(embed=embed)
             else:
                 return await message.reply(E_MESSAGE)
-            
-        if message.content.startswith('!bot.post'):
-            if message.author.id == int(CEO_ID):
-                if keep_alive.text_title != "":
-                    em = EM(
-                        title="Test Embed",
-                        description = str(keep_alive.text_title)
-                    )
-                    em.set_author(name="")
-                    em.set_thumbnail(url=LOGO_URL)
-                    keep_alive.text_title = ""
-                    return await message.reply(embed = em)
-                else:
-                    return
-            else:
-                return await message.reply(E_MESSAGE)
-                     
 
+        if message.startswith("!members"):
+            if message.author.id == int(CEO_ID):
+                member = message.guild.member
+                return await message.reply('Aktuell sind: '+str(member)+' online.')
+            else:
+                return await message.reply(E_MESSAGE)   
+        
     async def on_member_join(self, member):
         guild = member.guild
         if self.channel is not None:

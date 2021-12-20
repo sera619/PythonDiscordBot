@@ -62,6 +62,7 @@ def options():
 
 titles = ['title1', 'title2', 'title3']
 
+
 @app.route('/debugging', methods=['POST', 'GET'])
 def debug():      
     form = NameForm()
